@@ -1,0 +1,41 @@
+﻿@model SG_ASP_3.Models.Atenciones
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Importar</h2>
+
+<h4 class="text-danger">@ViewBag.Error</h4>
+<h4 class="text-success">@ViewBag.Confirmacion</h4>
+
+<form method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+
+    <div class="input-group">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputGroupFile04" name="file">
+            <label class="custom-file-label" for="inputGroupFile04"></label>
+        </div>
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Importar</button>
+        </div>
+    </div>
+
+</form>
+<div>
+    @foreach (var item in ViewBag.Estado)
+    {
+        int n = 0;
+        <p>"Line Query" @n +@item</p>
+        n++;
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

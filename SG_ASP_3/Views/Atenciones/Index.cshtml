@@ -1,0 +1,120 @@
+﻿@model IEnumerable<SG_ASP_3.Models.Atenciones>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-sm">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdAtenciones)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipExa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FecAte)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomApe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocIde)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubCon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proyec)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Perfil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PueTra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PeReAd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hora)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td width="20px">
+
+                @if (item.AleMed < 2)
+                {
+                    @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-success" })
+                }
+                else if (item.AleMed > 2)
+                {
+                    @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-danger" })
+                }
+                else
+                {
+                    @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones })
+                }
+                @Html.ActionLink("Auditoria", "Auditoria", new { id = item.IdAtenciones })
+                @Html.ActionLink("Enfermeria", "Enfermeria", new { id = item.IdAtenciones })
+                @Html.ActionLink("Admision", "Admision", new { id = item.IdAtenciones })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdAtenciones)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipExa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FecAte)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomApe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocIde)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubCon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proyec)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Perfil)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Area)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PueTra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PeReAd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hora)
+            </td>
+
+        </tr>
+    }
+
+</table>
