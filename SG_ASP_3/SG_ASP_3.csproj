@@ -170,8 +170,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdmisionController.cs" />
     <Compile Include="Controllers\AptitudsController.cs" />
     <Compile Include="Controllers\AtencionesController.cs" />
+    <Compile Include="Controllers\AuditoriasController.cs" />
+    <Compile Include="Controllers\EnfermeriaController.cs" />
     <Compile Include="Controllers\ExaMedicoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -206,13 +209,28 @@
     <Compile Include="Migrations\202105152108208_unamas.Designer.cs">
       <DependentUpon>202105152108208_unamas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105160306351_alernullable.cs" />
+    <Compile Include="Migrations\202105160306351_alernullable.Designer.cs">
+      <DependentUpon>202105160306351_alernullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105160431006_addAlertaAudi.cs" />
+    <Compile Include="Migrations\202105160431006_addAlertaAudi.Designer.cs">
+      <DependentUpon>202105160431006_addAlertaAudi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105160516022_unamas1.cs" />
+    <Compile Include="Migrations\202105160516022_unamas1.Designer.cs">
+      <DependentUpon>202105160516022_unamas1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\Admision.cs" />
+    <Compile Include="Models\AdmisionViewModel.cs" />
     <Compile Include="Models\Aptitud.cs" />
     <Compile Include="Models\Atenciones.cs" />
     <Compile Include="Models\Auditoria.cs" />
+    <Compile Include="Models\AuditoriaViewModel.cs" />
+    <Compile Include="Models\EnfermeriaViewModel.cs" />
     <Compile Include="Models\ExaMedico.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Interconsulta.cs" />
@@ -230,6 +248,8 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\chosen-sprite.png" />
+    <Content Include="Content\chosen.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -237,6 +257,8 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\chosen.jquery.min.js" />
+    <Content Include="Scripts\chosen.proto.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -420,6 +442,14 @@
     <Content Include="Views\Medicinas\Details.cshtml" />
     <Content Include="Views\Medicinas\Edit.cshtml" />
     <Content Include="Views\Medicinas\Index.cshtml" />
+    <Content Include="Views\Auditorias\Create.cshtml" />
+    <Content Include="Views\Auditorias\Delete.cshtml" />
+    <Content Include="Views\Auditorias\Details.cshtml" />
+    <Content Include="Views\Auditorias\Edit.cshtml" />
+    <Content Include="Views\Auditorias\Index.cshtml" />
+    <Content Include="Views\Enfermeria\Create.cshtml" />
+    <Content Include="Views\Admision\Create.cshtml" />
+    <Content Include="Views\Admision\Asistencia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -453,6 +483,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105152108208_unamas.resx">
       <DependentUpon>202105152108208_unamas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105160306351_alernullable.resx">
+      <DependentUpon>202105160306351_alernullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105160431006_addAlertaAudi.resx">
+      <DependentUpon>202105160431006_addAlertaAudi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105160516022_unamas1.resx">
+      <DependentUpon>202105160516022_unamas1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

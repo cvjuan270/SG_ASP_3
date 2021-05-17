@@ -1,0 +1,195 @@
+﻿@model IEnumerable<SG_ASP_3.Models.Auditoria>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Atenciones.Local0)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Medico.NomApe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExaCom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExaCom1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatInc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatInc1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AptErr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AptErr1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FaFiMe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FaFiMe1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FaFiPa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FaFiPa1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Restri)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Restri1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contro1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Diagno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Diagno1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ErrLle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ErrLle1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ObNoRe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmSnOb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmSnOb1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HorAud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FecAud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OmiInt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OmiInt1)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Atenciones.Local0)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Medico.NomApe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExaCom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExaCom1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatInc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatInc1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AptErr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AptErr1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FaFiMe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FaFiMe1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FaFiPa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FaFiPa1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Restri)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Restri1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contro1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Diagno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Diagno1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ErrLle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ErrLle1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ObNoRe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmSnOb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmSnOb1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HorAud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FecAud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OmiInt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OmiInt1)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdAudi }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdAudi }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdAudi })
+        </td>
+    </tr>
+}
+
+</table>

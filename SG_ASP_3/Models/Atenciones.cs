@@ -60,7 +60,9 @@ namespace SG_ASP_3.Models
         [Display(Name = "Hora de ingreso")]
         public TimeSpan? Hora { get; set; }
 
-        public virtual int AleMed { get; set; }
+        public virtual int? AleMed { get; set; }
+        public virtual int? AleAud { get; set; }
+        public virtual int? AleEnf { get; set; }
 
         public virtual ICollection<Medicina> Medicina { get; set; }
         public virtual ICollection<Interconsulta> Interconsultas { get; set; }

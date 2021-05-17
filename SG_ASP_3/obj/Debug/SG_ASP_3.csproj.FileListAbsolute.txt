@@ -131,3 +131,7 @@ C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.csproj.CopyCompl
 C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.dll
 C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.pdb
 C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.Migrations.unamas.resources
+C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.csprojAssemblyReference.cache
+C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.Migrations.alernullable.resources
+C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.Migrations.addAlertaAudi.resources
+C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.Migrations.unamas1.resources

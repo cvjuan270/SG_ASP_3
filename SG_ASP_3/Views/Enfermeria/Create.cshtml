@@ -1,0 +1,77 @@
+﻿@model SG_ASP_3.Models.EnfermeriaViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <dl class="row">
+            <dt class="col-sm-3 text-right">ID</dt>
+            <dd class="col-sm-9 text-left"> @Html.TextBoxFor(model => model.Interconsultas.First().IdAtenciones, new { @readonly = "readonly", @With = "100", @class = "form-control" })
+
+            <dt class="col-sm-3 text-right">Documento de identidad</dt>
+            <dd class="col-sm-9 text-left">@Html.DisplayText("DocIde")</dd>
+
+            <dt class="col-sm-3 text-right">Nombre y apellido</dt>
+            <dd class="col-sm-9 text-left">@Html.DisplayText("NomApe")</dd>
+
+            <dt class="col-sm-3 text-right">Empresa</dt>
+            <dd class="col-sm-9 text-left">@Html.DisplayText("Empres")</dd>
+        </dl>
+    </div>
+    <br />
+    <div class="form-horizontal">
+        <h4 class="glyphicon-subtitles">Enfermería</h4>
+        <hr />
+        <div>
+            <h4>Interconsultas</h4>
+            <table class="tabe table-striped">
+                <tr class="table info">
+                    <th>Id</th>
+                    <th>Interconsulta</th>
+                    <th>Fecha de envio</th>
+                    <th>Personal que envió el correo</th>
+                    <th>Envio de hoja informativa</th>
+                    <th>Fecha de comicación al paciente</th>
+                    <th>Personal que comunicó al paciente</th>
+                    <th>Fecha de levantamiento de observaciones</th>
+                </tr>
+
+                @for (int i = 0; i < Model.Interconsultas.Count; i++)
+                {
+                    <tr>
+                        <td>@Html.EditorFor(m => Model.Interconsultas[i].IdInter, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(m => Model.Interconsultas[i].Descri, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(m => Model.Interconsultas[i].FecEnv, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(m => Model.Interconsultas[i].PeEnCo, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(m => Model.Interconsultas[i].EnHoIn, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(m => Model.Interconsultas[i].FeCoPa, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(m => Model.Interconsultas[i].PeCoPa, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(m => Model.Interconsultas[i].FeLeObs, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>@Html.HiddenFor(m => Model.Interconsultas[i].IdAtenciones, new { htmlAttributes = new { @class = "form-control" } })</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <div class="form-group">
+        <div>
+            <input type="submit" value="Guardar" class="btn btn-primary " />
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

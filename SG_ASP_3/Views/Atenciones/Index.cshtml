@@ -7,72 +7,135 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Importar", "Create")
 </p>
-<table class="table table-sm">
-    <tr>
-        <th></th>
-        <th>
-            @Html.DisplayNameFor(model => model.IdAtenciones)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TipExa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FecAte)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NomApe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DocIde)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Empres)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SubCon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Proyec)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Perfil)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Area)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PueTra)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PeReAd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hora)
-        </th>
-    </tr>
 
+
+
+<table class="table table-sm table-bordered table-striped table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th></th>
+            <th></th>
+            <th>
+                Id
+            </th>
+            <th>
+                Tip. Exa
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FecAte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomApe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocIde)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubCon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proyec)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Perfil)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Area)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PueTra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PeReAd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hora)
+            </th>
+        </tr>
+    </thead>
+
+    <tbody >
     @foreach (var item in Model)
     {
         <tr>
-            <td width="20px">
+            <td>
+                <div class="form-group">
 
-                @if (item.AleMed < 2)
-                {
-                    @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-success" })
-                }
-                else if (item.AleMed > 2)
-                {
-                    @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-danger" })
-                }
-                else
-                {
-                    @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones })
-                }
-                @Html.ActionLink("Auditoria", "Auditoria", new { id = item.IdAtenciones })
-                @Html.ActionLink("Enfermeria", "Enfermeria", new { id = item.IdAtenciones })
-                @Html.ActionLink("Admision", "Admision", new { id = item.IdAtenciones })
+                    @if (item.AleMed <= 1)
+                    {
+                        @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-success  btn-sm", @style = "width:85px" })
+                    }
+                    else if (item.AleMed == 2)
+                    {
+                        @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-warning  btn-sm", @style = "width:85px" })
+                    }
+                    else if (item.AleMed >= 3)
+                    {
+                        @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-danger  btn-sm", @style = "width:85px" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-secondary  btn-sm", @style = "width:85px" })
+                    }
+                </div>
+                <div class="form-group">
+                    @if (item.AleAud == null)
+                    {
+                        @Html.ActionLink("Auditoria", "Auditoria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })
+                    }
+                    else if (item.AleAud <= 1)
+                    {
+                        @Html.ActionLink("Auditoria", "Auditoria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-success btn-sm", @style = "width:85px" })
+                    }
+                    else if (item.AleAud == 2)
+                    {
+                        @Html.ActionLink("Auditoria", "Auditoria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm", @style = "width:85px" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Auditoria", "Auditoria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-danger btn-sm", @style = "width:85px" })
+                    }
+                </div>
+                
+            </td>
+            <td>
+                <div class="form-group">
+                    @if (item.AleEnf == null)
+                    {
+                        TimeSpan ts = (DateTime.Now - DateTime.Parse(item.FecAte.ToString()));
+                        if (ts.Days <= 1)
+                        {
+                            @Html.ActionLink("Enfermeria", "Enfermeria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm", @style = "width:85px" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Enfermeria", "Enfermeria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-danger btn-sm", @style = "width:85px" })
+                        }
+                    }
+                    else if (item.AleEnf <= 1)
+                    {
+                        @Html.ActionLink("Enfermeria", "Enfermeria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-success btn-sm", @style = "width:85px" })
+                    }
+                    else if (item.AleEnf == 2)
+                    {
+                        @Html.ActionLink("Enfermeria", "Enfermeria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm", @style = "width:85px" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Enfermeria", "Enfermeria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-danger btn-sm", @style = "width:85px" })
+                    }
+
+                </div>
+ 
+                <div class="form-group">
+                    @Html.ActionLink("Admision", "Admision", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })
+                </div>
+                
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdAtenciones)
@@ -116,5 +179,6 @@
 
         </tr>
     }
+    </tbody>
 
 </table>

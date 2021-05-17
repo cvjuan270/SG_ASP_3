@@ -46,5 +46,9 @@ namespace IdentitySample.Models
         public System.Data.Entity.DbSet<SG_ASP_3.Models.Atenciones> Atenciones { get; set; }
 
         public System.Data.Entity.DbSet<SG_ASP_3.Models.Medicina> Medicinas { get; set; }
+
+        public System.Data.Entity.DbSet<SG_ASP_3.Models.Auditoria> Auditorias { get; set; }
+        public DbSet<SG_ASP_3.Models.Interconsulta> Interconsultas { get; set; }
+        public DbSet<SG_ASP_3.Models.Admision> Admisions { get; set; }
     }
 }

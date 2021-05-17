@@ -21,17 +21,41 @@ namespace SG_ASP_3.Controllers
         #region scaffolding
         public ActionResult Index()
         {
-            var listAleMed = (from ate in db.Atenciones
-                                 join med in db.Medicinas on ate.IdAtenciones equals med.IdAtenciones 
-                                 select new { IdAtenciones = ate.IdAtenciones,FecAte = ate.FecAte, FecApt = med.FecApt }).ToList();
-
             var atenciones = db.Atenciones.ToList();
 
+            var listAleMed = (from ate in atenciones
+                                 join med in db.Medicinas on ate.IdAtenciones equals med.IdAtenciones 
+                                 where med.FecApt!=null
+                                 select new { IdAtenciones = ate.IdAtenciones,FecAte = ate.FecAte, FecApt = med.FecApt }).ToList();
+                                    
+            var listAleAud = (from ate in atenciones
+                              join aud in db.Auditorias on ate.IdAtenciones equals aud.IdAtenciones
+                              select new { ate.IdAtenciones, ate.FecAte, aud.FecAud }).ToList();
+            var ListAleEnf = (from ate in atenciones
+                              join inter in db.Interconsultas on ate.IdAtenciones equals inter.IdAtenciones
+                              where inter.FeCoPa!= null
+                              orderby inter.FeCoPa ascending
+                              select new {ate.IdAtenciones,ate.FecAte,inter.FeCoPa}).ToList();
+            
             foreach (var item in listAleMed)
             {
                 TimeSpan ts = new TimeSpan();
                 ts = DateTime.Parse(item.FecApt.ToString()) - DateTime.Parse(item.FecAte.ToString());
                 atenciones.Find( m => m.IdAtenciones ==item.IdAtenciones).AleMed = ts.Days;
+            }
+
+            foreach (var item in listAleAud)
+            {
+                TimeSpan ts = new TimeSpan();
+                ts = DateTime.Parse(item.FecAud.ToString()) - DateTime.Parse(item.FecAte.ToString());
+                atenciones.Find(m => m.IdAtenciones == item.IdAtenciones).AleAud = ts.Days;
+            }
+
+            foreach (var item in ListAleEnf)
+            {
+                TimeSpan ts = new TimeSpan();
+                ts = DateTime.Parse(item.FeCoPa.ToString()) - DateTime.Parse(item.FecAte.ToString());
+                atenciones.Find(m => m.IdAtenciones == item.IdAtenciones).AleEnf = ts.Days;
             }
 
             
@@ -212,6 +236,11 @@ namespace SG_ASP_3.Controllers
         public ActionResult Enfermeria(int Id)
         {
             return RedirectToAction("Create", "Enfermeria", new { Id = Id });
+        }
+
+        public ActionResult Admision (int Id)
+        {
+            return RedirectToAction("Create", "Admision", new { Id = Id });
         }
 
         protected override void Dispose(bool disposing)
