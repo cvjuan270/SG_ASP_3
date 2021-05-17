@@ -41,25 +41,31 @@ namespace SG_ASP_3.Controllers
         // GET: Medicina/Create
         public ActionResult Create(int Id)
         {
+            MedicinaViewModel med = new MedicinaViewModel();
+            var aten = db.Atenciones.Find(Id);
             ViewBag.IdAtenciones = Id;
             ViewBag.IdApti = new SelectList(db.Aptituds, "IdApti", "Descri");
             ViewBag.IdMedico = new SelectList(db.Medicos, "IdMedico", "NomApe");
-            return View();
+
+            med.oMedicina.HorIng = TimeSpan.Parse(DateTime.Now.ToShortTimeString());
+            med.oMedicina.HorSal = TimeSpan.Parse(DateTime.Now.ToShortTimeString());
+
+            ViewBag.DocIde = aten.DocIde;
+            ViewBag.NomApe = aten.NomApe;
+            ViewBag.Empres = aten.Empres;
+
+            return View(med);
         }
 
-        // POST: Medicina/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "IdMedicina,HorIng,HorSal,IdApti,FecApt,FecEnv,Coment,Observ,UserName,IdAtenciones,IdMedico")] Medicina medicina)
         public ActionResult Create(MedicinaViewModel viewModel, int IdAtenciones, int IdMedico, int IdApti)
         {
-
-
             if (ModelState.IsValid)
             {
                 Medicina medicina = viewModel.oMedicina;
+                medicina.HorSal = TimeSpan.Parse(DateTime.Now.ToShortTimeString());
                 medicina.IdMedico = IdMedico;
                 medicina.IdApti = IdApti;
 
@@ -87,7 +93,6 @@ namespace SG_ASP_3.Controllers
             return View();
         }
 
-        // GET: Medicina/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -101,6 +106,7 @@ namespace SG_ASP_3.Controllers
             }
             ViewBag.IdAtenciones = new SelectList(db.Atenciones, "IdAtenciones", "Local0", medicina.IdAtenciones);
             ViewBag.IdMedico = new SelectList(db.Medicos, "IdMedico", "NomApe", medicina.IdMedico);
+            ViewBag.IdApti = new SelectList(db.Aptituds, "IdApti", "Descri", medicina.IdApti);
             return View(medicina);
         }
 
@@ -109,7 +115,7 @@ namespace SG_ASP_3.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdMedicina,HorIng,HorSal,Aptitu,FecApt,FecEnv,Coment,Observ,UserName,IdAtenciones,IdMedico")] Medicina medicina)
+        public ActionResult Edit([Bind(Include = "IdMedicina,HorIng,HorSal,IdApti,FecApt,FecEnv,Coment,Observ,UserName,IdAtenciones,IdMedico")] Medicina medicina)
         {
             if (ModelState.IsValid)
             {

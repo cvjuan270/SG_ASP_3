@@ -17,11 +17,48 @@ namespace SG_ASP_3.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        private DateTime oFecIni = DateTime.Now;
+        private DateTime oFecFin = DateTime.Now;
+
         // GET: Atenciones
         #region scaffolding
-        public ActionResult Index()
+        public ActionResult Index(DateTime? FecIni, DateTime? FecFin, string NomApe, string Dni, string Empres, string SubCon, string TipExa)
         {
-            var atenciones = db.Atenciones.ToList();
+            //var atenciones = db.Atenciones;
+            var atenciones = from cr in db.Atenciones select cr;
+
+            if (String.IsNullOrEmpty(FecIni.ToString()) && String.IsNullOrEmpty(FecFin.ToString()))
+            {
+                atenciones = atenciones.Where(c => c.FecAte >= DateTime.Now && c.FecAte <= DateTime.Now);
+            }
+
+            if (!String.IsNullOrEmpty(FecIni.ToString()) && !String.IsNullOrEmpty(FecFin.ToString()))
+            {
+                atenciones = atenciones.Where(c => c.FecAte >= FecIni && c.FecAte <= FecFin);
+            }
+
+            if (!String.IsNullOrEmpty(NomApe))
+            {
+                atenciones = atenciones.Where(c => c.NomApe.Contains(NomApe));
+            }
+            if (!String.IsNullOrEmpty(Dni))
+            {
+                atenciones = atenciones.Where(c => c.DocIde.Contains(Dni));
+            }
+            if (!String.IsNullOrEmpty(Empres))
+            {
+                atenciones = atenciones.Where(c => c.Empres.Contains(Empres));
+            }
+            if (!String.IsNullOrEmpty(TipExa))
+            {
+                atenciones = atenciones.Where(c => c.TipExa.Contains(TipExa));
+            }
+
+
+            if (!string.IsNullOrEmpty(SubCon))
+            {
+                atenciones = atenciones.Where(c => c.SubCon.Contains(SubCon));
+            }
 
             var listAleMed = (from ate in atenciones
                                  join med in db.Medicinas on ate.IdAtenciones equals med.IdAtenciones 
@@ -41,21 +78,21 @@ namespace SG_ASP_3.Controllers
             {
                 TimeSpan ts = new TimeSpan();
                 ts = DateTime.Parse(item.FecApt.ToString()) - DateTime.Parse(item.FecAte.ToString());
-                atenciones.Find( m => m.IdAtenciones ==item.IdAtenciones).AleMed = ts.Days;
+                atenciones.ToList().Find( m => m.IdAtenciones ==item.IdAtenciones).AleMed = ts.Days;
             }
 
             foreach (var item in listAleAud)
             {
                 TimeSpan ts = new TimeSpan();
                 ts = DateTime.Parse(item.FecAud.ToString()) - DateTime.Parse(item.FecAte.ToString());
-                atenciones.Find(m => m.IdAtenciones == item.IdAtenciones).AleAud = ts.Days;
+                atenciones.ToList().Find(m => m.IdAtenciones == item.IdAtenciones).AleAud = ts.Days;
             }
 
             foreach (var item in ListAleEnf)
             {
                 TimeSpan ts = new TimeSpan();
                 ts = DateTime.Parse(item.FeCoPa.ToString()) - DateTime.Parse(item.FecAte.ToString());
-                atenciones.Find(m => m.IdAtenciones == item.IdAtenciones).AleEnf = ts.Days;
+                atenciones.ToList().Find(m => m.IdAtenciones == item.IdAtenciones).AleEnf = ts.Days;
             }
 
             

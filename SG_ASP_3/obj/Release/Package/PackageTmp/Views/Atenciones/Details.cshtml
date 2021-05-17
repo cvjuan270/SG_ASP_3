@@ -1,0 +1,122 @@
+﻿@model SG_ASP_3.Models.Atenciones
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Atenciones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Local0)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Local0)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipExa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipExa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FecAte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FecAte)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomApe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomApe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocIde)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocIde)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubCon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubCon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proyec)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proyec)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Perfil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Perfil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Area)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Area)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PueTra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PueTra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PeReAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PeReAd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hora)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdAtenciones }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

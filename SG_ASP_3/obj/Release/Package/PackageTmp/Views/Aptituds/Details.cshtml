@@ -1,0 +1,26 @@
+﻿@model SG_ASP_3.Models.Aptitud
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Aptitud</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descri)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdApti }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

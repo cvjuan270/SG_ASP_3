@@ -1,0 +1,104 @@
+﻿@model SG_ASP_3.Models.Medicina
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Medicina</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Aptitud.Descri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aptitud.Descri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Atenciones.Local0)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Atenciones.Local0)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medico.NomApe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medico.NomApe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HorIng)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HorIng)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HorSal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HorSal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FecApt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FecApt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FecEnv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FecEnv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Coment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Coment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

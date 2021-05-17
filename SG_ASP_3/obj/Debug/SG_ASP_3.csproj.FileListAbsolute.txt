@@ -125,13 +125,12 @@ C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.Migrations.addmo
 C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.Migrations.addMedicos.resources
 C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.Migrations.renamedb.resources
 C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.Migrations.actua.resources
+C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.Migrations.unamas.resources
+C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.Migrations.alernullable.resources
+C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.Migrations.addAlertaAudi.resources
+C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.Migrations.unamas1.resources
 C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.csproj.GenerateResource.cache
 C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.csproj.CoreCompileInputs.cache
 C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.csproj.CopyComplete
 C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.dll
 C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.pdb
-C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.Migrations.unamas.resources
-C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.csprojAssemblyReference.cache
-C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.Migrations.alernullable.resources
-C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.Migrations.addAlertaAudi.resources
-C:\Users\JUAN\source\repos\SG_ASP_3\SG_ASP_3\obj\Debug\SG_ASP_3.Migrations.unamas1.resources

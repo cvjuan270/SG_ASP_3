@@ -1,0 +1,210 @@
+﻿@model IEnumerable<SG_ASP_3.Models.Atenciones>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Importar", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p class="form-inline">
+        <table class="table">
+            <thead>
+                <tr><td>Filtar</td></tr>
+            </thead>
+            <tr>
+                <td>Desde:@Html.TextBox("FecIni", String.Format("{0:dd/MM/yyyy}", DateTime.Now), new { @class = "form-control datepicker", @type = "datetime" })</td>
+                <td>Hasta:@Html.TextBox("FecFin", String.Format("{0:dd/MM/yyyy}", DateTime.Now), new { @class = "form-control datepicker", @type = "datetime" })</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            <tr>
+                <td>@Html.TextBox("Dni", "", new { placeholder = "DNI", @class = "form-control text-box" })</td>
+                <td>@Html.TextBox("NomApe", "", new { placeholder = "Nombre y/ó apellido", @class = "form-control text-box" })</td>
+            <tr>
+                <td>@Html.TextBox("TipExa", "", new { placeholder = "Tipo de examen", @class = "form-control text-box" })</td>
+                <td>@Html.TextBox("Empres", "", new { placeholder = "Empresa", @class = "form-control text-box" })</td>
+                <td>@Html.TextBox("SubCon", "", new { placeholder = "Sub Contrata", @class = "form-control text-box" })</td>
+                <td>
+                    <input style="vertical-align:central" type="submit" value="Buscar" class="btn btn-primary" />
+                </td>
+            </tr>
+        </table>
+    </p>
+}
+
+<table class="table table-sm table-bordered table-striped table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th></th>
+            <th></th>
+            <th>
+                Id
+            </th>
+            <th>
+                Tip. Exa
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FecAte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomApe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocIde)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubCon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proyec)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Perfil)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Area)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PueTra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PeReAd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hora)
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <div class="form-group">
+
+                        @if (item.AleMed <= 1)
+                        {
+                            @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-success  btn-sm", @style = "width:85px" })
+                        }
+                        else if (item.AleMed == 2)
+                        {
+                            @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-warning  btn-sm", @style = "width:85px" })
+                        }
+                        else if (item.AleMed >= 3)
+                        {
+                            @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-danger  btn-sm", @style = "width:85px" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-secondary  btn-sm", @style = "width:85px" })
+                        }
+                    </div>
+                    <div class="form-group">
+                        @if (item.AleAud == null)
+                        {
+                            @Html.ActionLink("Auditoria", "Auditoria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })
+                        }
+                        else if (item.AleAud <= 1)
+                        {
+                            @Html.ActionLink("Auditoria", "Auditoria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-success btn-sm", @style = "width:85px" })
+                        }
+                        else if (item.AleAud == 2)
+                        {
+                            @Html.ActionLink("Auditoria", "Auditoria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm", @style = "width:85px" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Auditoria", "Auditoria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-danger btn-sm", @style = "width:85px" })
+                        }
+                    </div>
+
+                </td>
+                <td>
+                    <div class="form-group">
+                        @if (item.AleEnf == null)
+                        {
+                            TimeSpan ts = (DateTime.Now - DateTime.Parse(item.FecAte.ToString()));
+                            if (ts.Days <= 1)
+                            {
+                                @Html.ActionLink("Enfermeria", "Enfermeria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm", @style = "width:85px" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Enfermeria", "Enfermeria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-danger btn-sm", @style = "width:85px" })
+                            }
+                        }
+                        else if (item.AleEnf <= 1)
+                        {
+                            @Html.ActionLink("Enfermeria", "Enfermeria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-success btn-sm", @style = "width:85px" })
+                        }
+                        else if (item.AleEnf == 2)
+                        {
+                            @Html.ActionLink("Enfermeria", "Enfermeria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm", @style = "width:85px" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Enfermeria", "Enfermeria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-danger btn-sm", @style = "width:85px" })
+                        }
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.ActionLink("Admision", "Admision", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })
+                    </div>
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdAtenciones)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipExa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FecAte)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomApe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocIde)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubCon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Proyec)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Perfil)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Area)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PueTra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PeReAd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hora)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>

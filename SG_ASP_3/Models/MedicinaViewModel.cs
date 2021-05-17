@@ -10,7 +10,10 @@ namespace SG_ASP_3.Models
         public Medicina oMedicina { get; set; }
         public List<Interconsulta> oInterconsulta { get; set; }
 
-        public MedicinaViewModel() { }
+        public MedicinaViewModel() 
+        {
+            oMedicina = new Medicina();
+        }
         public MedicinaViewModel(Medicina _Medicina, List<Interconsulta> _Interconsultas)
         {
             oMedicina = _Medicina;
