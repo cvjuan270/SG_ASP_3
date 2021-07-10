@@ -5,6 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\JUAN\Desktop\SG_ASP_3</_PublishTargetUrl>
+    <History>True|2021-07-08T17:06:08.5596197Z;True|2021-06-24T15:15:29.4680089-05:00;True|2021-06-24T13:20:08.4446967-05:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -272,10 +273,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/17/2021 08:56:33</publishTime>
     </File>
     <File Include="bin/SG_ASP_3.dll">
-      <publishTime>05/17/2021 12:01:17</publishTime>
+      <publishTime>07/08/2021 12:06:04</publishTime>
     </File>
     <File Include="bin/SG_ASP_3.pdb">
-      <publishTime>05/17/2021 12:01:17</publishTime>
+      <publishTime>07/08/2021 12:06:04</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>05/17/2021 08:56:32</publishTime>
@@ -300,6 +301,12 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>05/17/2021 08:56:34</publishTime>
+    </File>
+    <File Include="Content/Awesome/all.min.css">
+      <publishTime>07/03/2021 12:56:41</publishTime>
+    </File>
+    <File Include="Content/Awesome/all.min.js">
+      <publishTime>07/03/2021 12:56:57</publishTime>
     </File>
     <File Include="Content/bootstrap-grid.css">
       <publishTime>05/17/2021 08:56:29</publishTime>
@@ -734,7 +741,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/17/2021 08:56:29</publishTime>
     </File>
     <File Include="Views/Admision/Create.cshtml">
-      <publishTime>05/17/2021 08:56:29</publishTime>
+      <publishTime>07/05/2021 09:51:37</publishTime>
     </File>
     <File Include="Views/Aptituds/Create.cshtml">
       <publishTime>05/17/2021 08:56:29</publishTime>
@@ -751,6 +758,21 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Views/Aptituds/Index.cshtml">
       <publishTime>05/17/2021 08:56:29</publishTime>
     </File>
+    <File Include="Views/AtenciCovs/Create.cshtml">
+      <publishTime>05/21/2021 11:09:15</publishTime>
+    </File>
+    <File Include="Views/AtenciCovs/Delete.cshtml">
+      <publishTime>05/21/2021 11:09:16</publishTime>
+    </File>
+    <File Include="Views/AtenciCovs/Details.cshtml">
+      <publishTime>05/21/2021 11:09:18</publishTime>
+    </File>
+    <File Include="Views/AtenciCovs/Edit.cshtml">
+      <publishTime>05/21/2021 11:09:19</publishTime>
+    </File>
+    <File Include="Views/AtenciCovs/Index.cshtml">
+      <publishTime>05/21/2021 11:09:21</publishTime>
+    </File>
     <File Include="Views/Atenciones/Create.cshtml">
       <publishTime>05/17/2021 08:56:29</publishTime>
     </File>
@@ -764,7 +786,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/17/2021 08:56:29</publishTime>
     </File>
     <File Include="Views/Atenciones/Index.cshtml">
-      <publishTime>05/17/2021 10:48:34</publishTime>
+      <publishTime>07/08/2021 12:04:33</publishTime>
     </File>
     <File Include="Views/Auditorias/Create.cshtml">
       <publishTime>05/17/2021 08:56:29</publishTime>
@@ -773,16 +795,37 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/17/2021 08:56:29</publishTime>
     </File>
     <File Include="Views/Auditorias/Details.cshtml">
-      <publishTime>05/17/2021 11:59:10</publishTime>
+      <publishTime>06/24/2021 08:53:34</publishTime>
     </File>
     <File Include="Views/Auditorias/Edit.cshtml">
-      <publishTime>05/17/2021 08:56:29</publishTime>
+      <publishTime>06/16/2021 14:20:12</publishTime>
     </File>
     <File Include="Views/Auditorias/Index.cshtml">
       <publishTime>05/17/2021 08:56:29</publishTime>
     </File>
     <File Include="Views/Enfermeria/Create.cshtml">
-      <publishTime>05/17/2021 08:56:29</publishTime>
+      <publishTime>06/24/2021 08:45:19</publishTime>
+    </File>
+    <File Include="Views/EnvioHCs/Create.cshtml">
+      <publishTime>07/08/2021 11:25:52</publishTime>
+    </File>
+    <File Include="Views/EnvioHCs/Index.cshtml">
+      <publishTime>07/08/2021 12:02:36</publishTime>
+    </File>
+    <File Include="Views/EspecialidadMedicas/Create.cshtml">
+      <publishTime>06/15/2021 11:55:37</publishTime>
+    </File>
+    <File Include="Views/EspecialidadMedicas/Delete.cshtml">
+      <publishTime>06/15/2021 11:55:39</publishTime>
+    </File>
+    <File Include="Views/EspecialidadMedicas/Details.cshtml">
+      <publishTime>06/15/2021 11:55:41</publishTime>
+    </File>
+    <File Include="Views/EspecialidadMedicas/Edit.cshtml">
+      <publishTime>06/15/2021 11:55:42</publishTime>
+    </File>
+    <File Include="Views/EspecialidadMedicas/Index.cshtml">
+      <publishTime>06/15/2021 11:55:44</publishTime>
     </File>
     <File Include="Views/ExaMedicoes/Create.cshtml">
       <publishTime>05/17/2021 08:56:29</publishTime>
@@ -806,7 +849,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/17/2021 08:56:29</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>05/17/2021 08:56:29</publishTime>
+      <publishTime>07/06/2021 17:19:33</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>05/17/2021 08:56:29</publishTime>
@@ -827,16 +870,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/17/2021 08:56:29</publishTime>
     </File>
     <File Include="Views/Medicinas/Create.cshtml">
-      <publishTime>05/17/2021 11:19:51</publishTime>
+      <publishTime>06/24/2021 08:40:36</publishTime>
     </File>
     <File Include="Views/Medicinas/Delete.cshtml">
       <publishTime>05/17/2021 08:56:29</publishTime>
     </File>
     <File Include="Views/Medicinas/Details.cshtml">
-      <publishTime>05/17/2021 08:56:29</publishTime>
+      <publishTime>06/24/2021 08:21:20</publishTime>
     </File>
     <File Include="Views/Medicinas/Edit.cshtml">
-      <publishTime>05/17/2021 11:55:48</publishTime>
+      <publishTime>07/06/2021 09:50:19</publishTime>
     </File>
     <File Include="Views/Medicinas/Index.cshtml">
       <publishTime>05/17/2021 08:56:29</publishTime>
@@ -878,7 +921,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/17/2021 08:56:29</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>05/17/2021 08:56:29</publishTime>
+      <publishTime>07/05/2021 09:12:11</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>05/17/2021 08:56:29</publishTime>
@@ -905,7 +948,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/17/2021 08:56:29</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/17/2021 12:01:17</publishTime>
+      <publishTime>07/08/2021 12:06:04</publishTime>
     </File>
   </ItemGroup>
 </Project>

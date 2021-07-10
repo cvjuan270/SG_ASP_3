@@ -3,15 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title -San Gabriel|ASP.net</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/chosen.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <link href="~/Content/Awesome/all.min.css" rel="stylesheet" />
+
 </head>
 <body>
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Salud integral San Gabriel</a>
+        <a class="navbar-brand" href="/">Salud integral San Gabriel</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,7 +35,7 @@
                             @Html.ActionLink("Medicos", "Index", "Medicos", null, new { @class = "dropdown-item" })
                             @Html.ActionLink("Examenes medicos", "Index", "ExaMedicoes", null, new { @class = "dropdown-item" })
                             @Html.ActionLink("Aptitudes", "Index", "Aptituds", null, new { @class = "dropdown-item" })
-
+                            @Html.ActionLink("Especialidades(interconsulta)", "Index", "EspecialidadMedicas", null, new { @class = "dropdown-item" })
                         </div>
                     </li>
                 }
@@ -54,6 +57,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <script src="~/Scripts/chosen.jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <script src="~/Content/Awesome/all.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

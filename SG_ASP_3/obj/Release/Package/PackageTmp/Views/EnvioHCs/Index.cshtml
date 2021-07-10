@@ -1,0 +1,153 @@
+﻿@model IEnumerable<SG_ASP_3.Models.Atenciones>
+
+@{
+    ViewBag.Title = "Envio HC";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="form-row" style="background-color:azure;padding:5px;font-size:10px">
+        <div class="form-group col-md-6 col-lg-2">
+            @Html.TextBox("FecIni", @DateTime.Now.ToString("yyyy-MM-dd"), htmlAttributes: new { @class = "form-control datepicker", @Type = "date" })
+        </div>
+        <div class="form-group col-md-6 col-lg-2">
+            @Html.TextBox("FecFin", @DateTime.Now.ToString("yyyy-MM-dd"), htmlAttributes: new { @class = "form-control datepicker", @Type = "date" })
+        </div>
+        <div class="form-group col-md-6 col-lg-1">
+            @Html.TextBox("Dni", "", new { placeholder = "DNI", @class = "form-control text-box" })
+        </div>
+        <div class="form-group col-md-6 col-lg-2">
+            @Html.TextBox("NomApe", "", new { placeholder = "Nombre y/ó apellido", @class = "form-control text-box" })
+        </div>
+        <div class="form-group col-md-6 col-lg-1">
+            @Html.TextBox("TipExa", "", new { placeholder = "Tipo de examen", @class = "form-control text-box" })
+        </div>
+        <div class="form-group col-md-6 col-lg-1">
+            @Html.TextBox("Empres", "", new { placeholder = "Empresa", @class = "form-control text-box" })
+        </div>
+        <div class="form-group col-md-6 col-lg-1">
+            @Html.TextBox("SubCon", "", new { placeholder = "Sub Contrata", @class = "form-control text-box" })
+        </div>
+        <div class="form-group col-md-6 col-lg-1">
+            <div class="custom-control custom-checkbox">
+                @Html.CheckBox("TodExa", false, new { @class = "custom-control-input" })
+                <label class="custom-control-label" for="TodExa">todos los examenes medicos</label>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6 col-lg-2">
+            <button type="submit" class=" btn btn-primary">
+                <i class="fa fa-search text-white"></i> Buscar
+            </button>
+        </div>
+    </div>
+
+}
+
+
+
+<table id="table_id" class="table table-sm table-bordered table-striped table-hover" style="font-size:10px">
+    <thead class="thead-dark">
+        <tr>
+
+            <th>
+                Id
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomApe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocIde)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubCon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Local0)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FecAte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PueTra)
+            </th>
+            <th>
+                APTITUD CLINICA
+            </th>
+            <th>OBSERVACIONES O RESTRICCIONES</th>
+            <th>CONTROLES</th>
+            <th>FECHA DE ENVIO HC</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IdAtenciones)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomApe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocIde)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubCon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Local0)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FecAte)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PueTra)
+            </td>
+            <td>
+                @if (item.Medicina.Count > 0)
+                {
+                    @Html.DisplayFor(modelItem => item.Medicina.First().Aptitud.Descri)
+                }
+                else
+                {
+                    <label>--</label>
+                }
+
+            </td>
+            @if (item.EnvioHCs.Count > 0)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnvioHCs.First().Observ)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnvioHCs.First().contro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnvioHCs.First().FecEnv)
+                </td>
+            }
+            else
+            {
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+            }
+
+
+
+
+        </tr>
+        }
+    </tbody>
+
+</table>

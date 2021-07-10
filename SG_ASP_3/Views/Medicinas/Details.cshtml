@@ -1,98 +1,139 @@
-﻿@model SG_ASP_3.Models.Medicina
+﻿@model SG_ASP_3.Models.MedicinaViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
-<h2>Details</h2>
 
+<h5>Atenciones</h5>
+<hr />
+<div>
+    <dl class="row">
+
+        <dt class="col-sm-3 text-right">Documento de identidad</dt>
+        <dd class="col-sm-9 text-left">@Html.DisplayText("DocIde")</dd>
+
+        <dt class="col-sm-3 text-right">Nombre y apellido</dt>
+        <dd class="col-sm-9 text-left">@Html.DisplayText("NomApe")</dd>
+
+        <dt class="col-sm-3 text-right">Empresa</dt>
+        <dd class="col-sm-9 text-left">@Html.DisplayText("Empres")</dd>
+    </dl>
+</div>
+<h2>Detalles</h2>
 <div>
     <h4>Medicina</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Aptitud.Descri)
+    <dl class="row">
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.oMedicina.Aptitud.Descri)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Aptitud.Descri)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.oMedicina.Aptitud.Descri)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Atenciones.Local0)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.oMedicina.Medico.NomApe)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Atenciones.Local0)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.oMedicina.Medico.NomApe)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Medico.NomApe)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.oMedicina.HorIng)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Medico.NomApe)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.oMedicina.HorIng)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HorIng)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.oMedicina.HorSal)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.HorIng)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.oMedicina.HorSal)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HorSal)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.oMedicina.FecApt)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.HorSal)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.oMedicina.FecApt)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FecApt)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.oMedicina.FecEnv)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FecApt)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.oMedicina.FecEnv)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FecEnv)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.oMedicina.Coment)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FecEnv)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.oMedicina.Coment)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Coment)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.oMedicina.Observ)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Coment)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.oMedicina.Observ)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Observ)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.oMedicina.UserName)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Observ)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.oMedicina.UserName)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
     </dl>
 </div>
+<br />
+<h2>Interconsultas</h2>
+@if (Model.oInterconsulta.Count >= 1)
+{
+    <table class="table table-bordered table-dark">
+
+        <tr>
+            <th>Id</th>
+            <th>Interconsulta</th>
+            <th>Fecha de envio</th>
+            <th>Personal que envió el correo</th>
+            <th>Envio de hoja informativa</th>
+            <th>Fecha de comicación al paciente</th>
+            <th>Personal que comunicó al paciente</th>
+            <th>Fecha de levantamiento de observaciones</th>
+        </tr>
+
+        @foreach (var Item in Model.oInterconsulta)
+        {
+            <tr>
+                <td>@Html.DisplayFor(Model => Item.IdInter)</td>
+                <td>@Html.DisplayFor(Model => Item.Descri)</td>
+                <td>@Html.DisplayFor(Model => Item.FecEnv)</td>
+                <td>@Html.DisplayFor(Model => Item.PeEnCo)</td>
+                <td>@Html.DisplayFor(Model => Item.EnHoIn)</td>
+                <td>@Html.DisplayFor(Model => Item.FeCoPa)</td>
+                <td>@Html.DisplayFor(Model => Item.PeCoPa)</td>
+                <td>@Html.DisplayFor(Model => Item.FeLeObs)</td>
+            </tr>
+        }
+
+    </table>
+
+}
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdMedicina }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.oMedicina.IdMedicina }) |
+    @*@Html.ActionLink("Back to List", "Index")*@
 </p>

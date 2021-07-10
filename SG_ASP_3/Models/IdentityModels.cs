@@ -21,7 +21,7 @@ namespace IdentitySample.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnection", throwIfV1Schema: true)
         {
         }
 
@@ -50,5 +50,12 @@ namespace IdentitySample.Models
         public System.Data.Entity.DbSet<SG_ASP_3.Models.Auditoria> Auditorias { get; set; }
         public DbSet<SG_ASP_3.Models.Interconsulta> Interconsultas { get; set; }
         public DbSet<SG_ASP_3.Models.Admision> Admisions { get; set; }
+        public System.Data.Entity.DbSet<SG_ASP_3.Models.PruebasCovid.TipoPrueba> TipoPruebas { get; set; }
+        public DbSet<SG_ASP_3.Models.PruebasCovid.DocIde> DocIdes { get; set; }
+        public DbSet<SG_ASP_3.Models.PruebasCovid.AtenciCov> AtenciCovs { get; set; }
+
+        public System.Data.Entity.DbSet<SG_ASP_3.Models.EspecialidadMedica> EspecialidadMedicas { get; set; }
+
+        public System.Data.Entity.DbSet<SG_ASP_3.Models.EnvioHC> EnvioHCs { get; set; }
     }
 }

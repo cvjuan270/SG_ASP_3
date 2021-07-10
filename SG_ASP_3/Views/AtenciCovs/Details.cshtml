@@ -1,0 +1,74 @@
+﻿@model SG_ASP_3.Models.PruebasCovid.AtenciCov
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AtenciCov</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DocIde.Descri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocIde.Descri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoPrueba.Descri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoPrueba.Descri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FecTomMue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FecTomMue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HorTomMue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HorTomMue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumDocIde)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumDocIde)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomApe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomApe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdRes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdRes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdAteCov }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

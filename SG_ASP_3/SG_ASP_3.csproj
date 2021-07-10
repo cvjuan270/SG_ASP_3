@@ -175,51 +175,42 @@
     <Compile Include="Controllers\AtencionesController.cs" />
     <Compile Include="Controllers\AuditoriasController.cs" />
     <Compile Include="Controllers\EnfermeriaController.cs" />
+    <Compile Include="Controllers\EnvioHCsController.cs" />
+    <Compile Include="Controllers\EspecialidadMedicasController.cs" />
     <Compile Include="Controllers\ExaMedicoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MedicinasController.cs" />
     <Compile Include="Controllers\MedicosController.cs" />
+    <Compile Include="Controllers\PruebasCovid\AtenciCovsController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202105151334390_InitialCreate.cs" />
-    <Compile Include="Migrations\202105151334390_InitialCreate.Designer.cs">
-      <DependentUpon>202105151334390_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202106151646432_initial.cs" />
+    <Compile Include="Migrations\202106151646432_initial.Designer.cs">
+      <DependentUpon>202106151646432_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202105151541306_addmodelSG.cs" />
-    <Compile Include="Migrations\202105151541306_addmodelSG.Designer.cs">
-      <DependentUpon>202105151541306_addmodelSG.cs</DependentUpon>
+    <Compile Include="Migrations\202106151657475_add_espeMedic.cs" />
+    <Compile Include="Migrations\202106151657475_add_espeMedic.Designer.cs">
+      <DependentUpon>202106151657475_add_espeMedic.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202105151550277_addMedicos.cs" />
-    <Compile Include="Migrations\202105151550277_addMedicos.Designer.cs">
-      <DependentUpon>202105151550277_addMedicos.cs</DependentUpon>
+    <Compile Include="Migrations\202107072029582_AddEnvHC.cs" />
+    <Compile Include="Migrations\202107072029582_AddEnvHC.Designer.cs">
+      <DependentUpon>202107072029582_AddEnvHC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202105151619184_renamedb.cs" />
-    <Compile Include="Migrations\202105151619184_renamedb.Designer.cs">
-      <DependentUpon>202105151619184_renamedb.cs</DependentUpon>
+    <Compile Include="Migrations\202107081356400_editenvihc.cs" />
+    <Compile Include="Migrations\202107081356400_editenvihc.Designer.cs">
+      <DependentUpon>202107081356400_editenvihc.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202105151743501_actua.cs" />
-    <Compile Include="Migrations\202105151743501_actua.Designer.cs">
-      <DependentUpon>202105151743501_actua.cs</DependentUpon>
+    <Compile Include="Migrations\202107081536549_editatenciones.cs" />
+    <Compile Include="Migrations\202107081536549_editatenciones.Designer.cs">
+      <DependentUpon>202107081536549_editatenciones.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202105152108208_unamas.cs" />
-    <Compile Include="Migrations\202105152108208_unamas.Designer.cs">
-      <DependentUpon>202105152108208_unamas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105160306351_alernullable.cs" />
-    <Compile Include="Migrations\202105160306351_alernullable.Designer.cs">
-      <DependentUpon>202105160306351_alernullable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105160431006_addAlertaAudi.cs" />
-    <Compile Include="Migrations\202105160431006_addAlertaAudi.Designer.cs">
-      <DependentUpon>202105160431006_addAlertaAudi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105160516022_unamas1.cs" />
-    <Compile Include="Migrations\202105160516022_unamas1.Designer.cs">
-      <DependentUpon>202105160516022_unamas1.cs</DependentUpon>
+    <Compile Include="Migrations\202107081544248_editAtenciones.cs" />
+    <Compile Include="Migrations\202107081544248_editAtenciones.Designer.cs">
+      <DependentUpon>202107081544248_editAtenciones.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -230,7 +221,11 @@
     <Compile Include="Models\Atenciones.cs" />
     <Compile Include="Models\Auditoria.cs" />
     <Compile Include="Models\AuditoriaViewModel.cs" />
+    <Compile Include="Models\DashBoardViewModel.cs" />
     <Compile Include="Models\EnfermeriaViewModel.cs" />
+    <Compile Include="Models\EnvioHC.cs" />
+    <Compile Include="Models\EnvioHCViewModel.cs" />
+    <Compile Include="Models\EspecialidadMedica.cs" />
     <Compile Include="Models\ExaMedico.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Interconsulta.cs" />
@@ -238,10 +233,19 @@
     <Compile Include="Models\Medicina.cs" />
     <Compile Include="Models\MedicinaViewModel.cs" />
     <Compile Include="Models\Medico.cs" />
+    <Compile Include="Models\PruebasCovid\AtenciCov.cs" />
+    <Compile Include="Models\PruebasCovid\DocIde.cs" />
+    <Compile Include="Models\PruebasCovid\ResultAg.cs" />
+    <Compile Include="Models\PruebasCovid\ResultCua.cs" />
+    <Compile Include="Models\PruebasCovid\ResultMol.cs" />
+    <Compile Include="Models\PruebasCovid\ResultSer.cs" />
+    <Compile Include="Models\PruebasCovid\TipoPrueba.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Awesome\all.min.css" />
+    <Content Include="Content\Awesome\all.min.js" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -449,10 +453,22 @@
     <Content Include="Views\Auditorias\Index.cshtml" />
     <Content Include="Views\Enfermeria\Create.cshtml" />
     <Content Include="Views\Admision\Create.cshtml" />
-    <Content Include="Views\Admision\Asistencia.cshtml" />
+    <Content Include="Views\AtenciCovs\Create.cshtml" />
+    <Content Include="Views\AtenciCovs\Delete.cshtml" />
+    <Content Include="Views\AtenciCovs\Details.cshtml" />
+    <Content Include="Views\AtenciCovs\Edit.cshtml" />
+    <Content Include="Views\AtenciCovs\Index.cshtml" />
+    <Content Include="Views\EspecialidadMedicas\Create.cshtml" />
+    <Content Include="Views\EspecialidadMedicas\Delete.cshtml" />
+    <Content Include="Views\EspecialidadMedicas\Details.cshtml" />
+    <Content Include="Views\EspecialidadMedicas\Edit.cshtml" />
+    <Content Include="Views\EspecialidadMedicas\Index.cshtml" />
+    <Content Include="Views\EnvioHCs\Create.cshtml" />
+    <Content Include="Views\EnvioHCs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\PruebasCovid\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -466,32 +482,20 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202105151334390_InitialCreate.resx">
-      <DependentUpon>202105151334390_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106151646432_initial.resx">
+      <DependentUpon>202106151646432_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105151541306_addmodelSG.resx">
-      <DependentUpon>202105151541306_addmodelSG.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106151657475_add_espeMedic.resx">
+      <DependentUpon>202106151657475_add_espeMedic.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105151550277_addMedicos.resx">
-      <DependentUpon>202105151550277_addMedicos.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202107072029582_AddEnvHC.resx">
+      <DependentUpon>202107072029582_AddEnvHC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105151619184_renamedb.resx">
-      <DependentUpon>202105151619184_renamedb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202107081356400_editenvihc.resx">
+      <DependentUpon>202107081356400_editenvihc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105151743501_actua.resx">
-      <DependentUpon>202105151743501_actua.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105152108208_unamas.resx">
-      <DependentUpon>202105152108208_unamas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105160306351_alernullable.resx">
-      <DependentUpon>202105160306351_alernullable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105160431006_addAlertaAudi.resx">
-      <DependentUpon>202105160431006_addAlertaAudi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105160516022_unamas1.resx">
-      <DependentUpon>202105160516022_unamas1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202107081536549_editatenciones.resx">
+      <DependentUpon>202107081536549_editatenciones.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

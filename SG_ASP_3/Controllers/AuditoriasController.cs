@@ -15,14 +15,8 @@ namespace SG_ASP_3.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Auditorias
-        public ActionResult Index()
-        {
-            var auditorias = db.Auditorias.Include(a => a.Atenciones).Include(a => a.Medico);
-            return View(auditorias.ToList());
-        }
-
         // GET: Auditorias/Details/5
+        
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -34,7 +28,20 @@ namespace SG_ASP_3.Controllers
             {
                 return HttpNotFound();
             }
-            return View(atenciones.Auditorias.First());
+
+            var AllExam = from t in db.ExaMedicoes select t;
+            Auditoria auditoria = atenciones.Auditorias.First();
+            AuditoriaViewModel viewModel = new AuditoriaViewModel(auditoria, AllExam.ToList());
+
+            if (auditoria.ExaMedicos.Count >= 1)
+            {
+                foreach (var item in auditoria.ExaMedicos)
+                {
+                    viewModel.SelectExaMed.Add(item.IdExMed);
+                }
+            }
+
+            return View(viewModel);
         }
 
         // GET: Auditorias/Create
@@ -63,18 +70,16 @@ namespace SG_ASP_3.Controllers
             return View(viewModel);
         }
 
-        // POST: Auditorias/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [Authorize(Roles = "Admin,Auditoria")]
         public ActionResult Create(AuditoriaViewModel auditoriaViewModel, int IdMedico)
         {
             Auditoria auditoria = auditoriaViewModel.auditoria;
             auditoria.IdMedico = IdMedico;
             if (ModelState.IsValid)
             {
+                auditoria.UserName = HttpContext.User.Identity.Name;
                 if (auditoriaViewModel.SelectExaMed != null)
                 {
                     foreach (var item in auditoriaViewModel.SelectExaMed)
@@ -92,22 +97,34 @@ namespace SG_ASP_3.Controllers
             return View(auditoria);
         }
 
-
         // GET: Auditorias/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            var AllExam = from t in db.ExaMedicoes select t;
             Auditoria auditoria = db.Auditorias.Find(id);
+            AuditoriaViewModel viewModel = new AuditoriaViewModel(auditoria, AllExam.ToList());
+
+            if (auditoria.ExaMedicos.Count>=1)
+            {
+                foreach (var item in auditoria.ExaMedicos)
+                {
+                    viewModel.SelectExaMed.Add(item.IdExMed);
+                }
+            }
+            
             if (auditoria == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IdAtenciones = new SelectList(db.Atenciones, "IdAtenciones", "Local0", auditoria.IdAtenciones);
+            
             ViewBag.IdMedico = new SelectList(db.Medicos, "IdMedico", "NomApe", auditoria.IdMedico);
-            return View(auditoria);
+            return View(viewModel);
         }
 
         // POST: Auditorias/Edit/5
@@ -126,32 +143,6 @@ namespace SG_ASP_3.Controllers
             ViewBag.IdAtenciones = new SelectList(db.Atenciones, "IdAtenciones", "Local0", auditoria.IdAtenciones);
             ViewBag.IdMedico = new SelectList(db.Medicos, "IdMedico", "NomApe", auditoria.IdMedico);
             return View(auditoria);
-        }
-
-        // GET: Auditorias/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Auditoria auditoria = db.Auditorias.Find(id);
-            if (auditoria == null)
-            {
-                return HttpNotFound();
-            }
-            return View(auditoria);
-        }
-
-        // POST: Auditorias/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Auditoria auditoria = db.Auditorias.Find(id);
-            db.Auditorias.Remove(auditoria);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         public ActionResult Atenciones()

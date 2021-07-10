@@ -4,45 +4,59 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h4>Atenciones</h4>
 
-<p>
-    @Html.ActionLink("Importar", "Create")
-</p>
-
-@using (Html.BeginForm())
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
-    <p class="form-inline">
-        <table class="table">
-            <thead>
-                <tr><td>Filtar</td></tr>
-            </thead>
-            <tr>
-                <td>Desde:@Html.TextBox("FecIni", String.Format("{0:dd/MM/yyyy}", DateTime.Now), new { @class = "form-control datepicker", @type = "datetime" })</td>
-                <td>Hasta:@Html.TextBox("FecFin", String.Format("{0:dd/MM/yyyy}", DateTime.Now), new { @class = "form-control datepicker", @type = "datetime" })</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            <tr>
-                <td>@Html.TextBox("Dni", "", new { placeholder = "DNI", @class = "form-control text-box" })</td>
-                <td>@Html.TextBox("NomApe", "", new { placeholder = "Nombre y/ó apellido", @class = "form-control text-box" })</td>
-            <tr>
-                <td>@Html.TextBox("TipExa", "", new { placeholder = "Tipo de examen", @class = "form-control text-box" })</td>
-                <td>@Html.TextBox("Empres", "", new { placeholder = "Empresa", @class = "form-control text-box" })</td>
-                <td>@Html.TextBox("SubCon", "", new { placeholder = "Sub Contrata", @class = "form-control text-box" })</td>
-                <td>
-                    <input style="vertical-align:central" type="submit" value="Buscar" class="btn btn-primary" />
-                </td>
-            </tr>
-        </table>
+    <p>
+        @Html.ActionLink("Importar", "Create")
     </p>
 }
 
-<table class="table table-sm table-bordered table-striped table-hover">
+@using (Html.BeginForm())
+{
+<div class="form-row" style="background-color:azure;padding:5px;font-size:10px">
+    <div class="form-group col-md-6 col-lg-2">
+        @Html.TextBox("FecIni", @DateTime.Now.ToString("yyyy-MM-dd"), htmlAttributes: new { @class = "form-control datepicker", @Type = "date" })
+    </div>
+    <div class="form-group col-md-6 col-lg-2">
+        @Html.TextBox("FecFin", @DateTime.Now.ToString("yyyy-MM-dd"), htmlAttributes: new { @class = "form-control datepicker", @Type = "date" })
+    </div>
+    <div class="form-group col-md-6 col-lg-1">
+        @Html.TextBox("Dni", "", new { placeholder = "DNI", @class = "form-control text-box" })
+    </div>
+    <div class="form-group col-md-6 col-lg-2">
+        @Html.TextBox("NomApe", "", new { placeholder = "Nombre y/ó apellido", @class = "form-control text-box" })
+    </div>
+    <div class="form-group col-md-6 col-lg-1">
+        @Html.TextBox("TipExa", "", new { placeholder = "Tipo de examen", @class = "form-control text-box" })
+    </div>
+    <div class="form-group col-md-6 col-lg-1">
+        @Html.TextBox("Empres", "", new { placeholder = "Empresa", @class = "form-control text-box" })
+    </div>
+    <div class="form-group col-md-6 col-lg-1">
+        @Html.TextBox("SubCon", "", new { placeholder = "Sub Contrata", @class = "form-control text-box" })
+    </div>
+    <div class="form-group col-md-6 col-lg-1">
+        <div class="custom-control custom-checkbox">
+            @Html.CheckBox("TodExa",false,new {@class= "custom-control-input" })
+            <label class="custom-control-label" for="TodExa">todos los examenes medicos</label>
+        </div>
+    </div>
+    
+    <div class="form-group col-md-6 col-lg-2">
+        <button type="submit" class=" btn btn-primary">
+            <i class="fa fa-search text-white"></i> Buscar
+        </button>
+    </div>
+</div>
+
+}
+
+<table id="table_id" class="table table-sm table-bordered table-striped table-hover" style="font-size:10px">
     <thead class="thead-dark">
         <tr>
-            <th></th>
-            <th></th>
+            <th>Medicina|Auditoria<br />Enfermería|Admisión|HC</th>
             <th>
                 Id
             </th>
@@ -90,79 +104,128 @@
         {
             <tr>
                 <td>
-                    <div class="form-group">
 
-                        @if (item.AleMed <= 1)
+                    <!--button Medicina-->
+                    @if (item.AleMed == null)
+                    {
+                        <a href="@Url.Action("Medicina",new { id=item.IdAtenciones})" style="font-size:24px">
+                            <i class="fa fa-user-md text-secondary"></i>
+                        </a>
+                    }
+                    else if (item.AleMed <= 1)
+                    {
+                        <a href="@Url.Action("Medicina",new { id=item.IdAtenciones})" style="font-size:24px">
+                            <i class="fa fa-user-md text-success"></i>
+                        </a>
+                    }
+                    else if (item.AleMed == 2)
+                    {
+                        <a href="@Url.Action("Medicina",new { id=item.IdAtenciones})" style="font-size:24px">
+                            <i class="fa fa-user-md text-warning"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Medicina",new { id=item.IdAtenciones})" style="font-size:24px">
+                            <i class="fa fa-user-md text-danger"></i>
+                        </a>
+                    }
+
+                    <!--Button Auditoria-->
+                    @if (item.AleAud == null)
+                    {
+                        <a href="@Url.Action("Auditoria",new { id=item.IdAtenciones})" style="font-size:24px">
+                            <i class="fa fa-user-check text-secondary"></i>
+                        </a>
+                    }
+                    else if (item.AleAud <= 1)
+                    {
+                        <a href="@Url.Action("Auditoria",new { id=item.IdAtenciones})" style="font-size:24px">
+                            <i class="fa fa-user-check text-success"></i>
+                        </a>
+                    }
+                    else if (item.AleAud == 2)
+                    {
+                        <a href="@Url.Action("Auditoria",new { id=item.IdAtenciones})" style="font-size:24px">
+                            <i class="fa fa-user-check text-warning"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Auditoria",new { id=item.IdAtenciones})" style="font-size:24px">
+                            <i class="fa fa-user-check text-danger"></i>
+                        </a>
+                    }
+
+                    <!--enfermeria-->
+                    @if (item.AleEnf == null)
+                    {
+                        TimeSpan ts = (DateTime.Now - DateTime.Parse(item.FecAte.ToString()));
+                        if (ts.Days <= 1)
                         {
-                            @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-success  btn-sm", @style = "width:85px" })
-                        }
-                        else if (item.AleMed == 2)
-                        {
-                            @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-warning  btn-sm", @style = "width:85px" })
-                        }
-                        else if (item.AleMed >= 3)
-                        {
-                            @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-danger  btn-sm", @style = "width:85px" })
+                            <a href="@Url.Action("Enfermeria",new { id=item.IdAtenciones})" style="font-size:24px">
+                                <i class="fa fa-user-nurse text-secondary"></i>
+                            </a>
                         }
                         else
                         {
-                            @Html.ActionLink("Medicina", "Medicina", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-secondary  btn-sm", @style = "width:85px" })
+                            <a href="@Url.Action("Enfermeria",new { id=item.IdAtenciones})" style="font-size:24px">
+                                <i class="fa fa-user-nurse text-danger"></i>
+                            </a>
                         }
-                    </div>
-                    <div class="form-group">
-                        @if (item.AleAud == null)
-                        {
-                            @Html.ActionLink("Auditoria", "Auditoria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })
-                        }
-                        else if (item.AleAud <= 1)
-                        {
-                            @Html.ActionLink("Auditoria", "Auditoria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-success btn-sm", @style = "width:85px" })
-                        }
-                        else if (item.AleAud == 2)
-                        {
-                            @Html.ActionLink("Auditoria", "Auditoria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm", @style = "width:85px" })
-                        }
-                        else
-                        {
-                            @Html.ActionLink("Auditoria", "Auditoria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-danger btn-sm", @style = "width:85px" })
-                        }
-                    </div>
+                    }
+                    else if (item.AleEnf <= 1)
+                    {
+                        <a href="@Url.Action("Enfermeria",new { id=item.IdAtenciones})" style="font-size:24px">
+                            <i class="fa fa-user-nurse text-success"></i>
+                        </a>
+                    }
+                    else if (item.AleEnf == 2)
+                    {
+                        <a href="@Url.Action("Enfermeria",new { id=item.IdAtenciones})" style="font-size:24px">
+                            <i class="fa fa-user-nurse text-warning"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Enfermeria",new { id=item.IdAtenciones})" style="font-size:24px">
+                            <i class="fa fa-user-nurse text-danger"></i>
+                        </a>
+                    }
+
+                    <!--Asmision-->
+                    <a href="@Url.Action("Admision",new { id=item.IdAtenciones})" style="font-size:24px">
+                        <i class="fa fa-laptop-medical text-secondary"></i>
+                    </a>
+
+                    <!--Button envio de HC-->
+                    @if (item.AlEnHC == null)
+                    {
+                        <a href="@Url.Action("EnvioHC",new { id=item.IdAtenciones})" style="font-size:24px">
+                            <i class="fa fa-file-medical-alt text-secondary"></i>
+                        </a>
+                    }
+                    else if (item.AlEnHC <= 1)
+                    {
+                        <a href="@Url.Action("EnvioHC",new { id=item.IdAtenciones})" style="font-size:24px">
+                            <i class="fa fa-file-medical-alt text-success"></i>
+                        </a>
+                    }
+                    else if (item.AlEnHC == 2)
+                    {
+                        <a href="@Url.Action("EnvioHC",new { id=item.IdAtenciones})" style="font-size:24px">
+                            <i class="fa fa-file-medical-alt text-warning"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("EnvioHC",new { id=item.IdAtenciones})" style="font-size:24px">
+                            <i class="fa fa-file-medical-alt text-danger"></i>
+                        </a>
+                    }
 
                 </td>
-                <td>
-                    <div class="form-group">
-                        @if (item.AleEnf == null)
-                        {
-                            TimeSpan ts = (DateTime.Now - DateTime.Parse(item.FecAte.ToString()));
-                            if (ts.Days <= 1)
-                            {
-                                @Html.ActionLink("Enfermeria", "Enfermeria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm", @style = "width:85px" })
-                            }
-                            else
-                            {
-                                @Html.ActionLink("Enfermeria", "Enfermeria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-danger btn-sm", @style = "width:85px" })
-                            }
-                        }
-                        else if (item.AleEnf <= 1)
-                        {
-                            @Html.ActionLink("Enfermeria", "Enfermeria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-success btn-sm", @style = "width:85px" })
-                        }
-                        else if (item.AleEnf == 2)
-                        {
-                            @Html.ActionLink("Enfermeria", "Enfermeria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm", @style = "width:85px" })
-                        }
-                        else
-                        {
-                            @Html.ActionLink("Enfermeria", "Enfermeria", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-danger btn-sm", @style = "width:85px" })
-                        }
 
-                    </div>
-
-                    <div class="form-group">
-                        @Html.ActionLink("Admision", "Admision", new { id = item.IdAtenciones }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })
-                    </div>
-
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.IdAtenciones)
                 </td>
@@ -208,3 +271,21 @@
     </tbody>
 
 </table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#FecIni').val(new Date().toDateInputValue());
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#table_id").DataTable({
+                scrollY: 400,
+                "order": [1, "asc"],
+                "Show": "Vista"
+            });
+        });
+    </script>
+}

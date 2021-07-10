@@ -36,6 +36,8 @@ namespace SG_ASP_3.Models
         [StringLength(50)]
         public string UserName { get; set; }
         public int IdAtenciones { get; set; }
+
+        [Display(Name ="Médico")]
         public int IdMedico { get; set; }
 
         [Display(Name = "Aptitud")]

@@ -14,6 +14,7 @@ namespace SG_ASP_3.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Enfermeria,Admin")]
         public ActionResult Create(int Id)
         {
             var atenciones = db.Atenciones.Find(Id);
@@ -39,7 +40,7 @@ namespace SG_ASP_3.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Enfermeria,Admin")]
+        [Authorize(Roles = "Enfermeria,Admin")]
         public ActionResult Create(EnfermeriaViewModel enf)
         {
             if (enf.Interconsultas != null)

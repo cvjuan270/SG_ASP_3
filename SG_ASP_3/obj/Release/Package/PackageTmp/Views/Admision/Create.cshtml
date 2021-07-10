@@ -70,8 +70,8 @@
             <div class="form-group row">
                 @Html.LabelFor(model => model.Admision.EnvAsi, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.Admision.EnvAsi)
+                    <div >
+                        @Html.EditorFor(model => model.Admision.EnvAsi, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Admision.EnvAsi, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -80,8 +80,8 @@
             <div class="form-group row">
                 @Html.LabelFor(model => model.Admision.EnvApt, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.Admision.EnvApt)
+                    <div>
+                        @Html.EditorFor(model => model.Admision.EnvApt, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Admision.EnvApt, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -111,6 +111,7 @@
                 <h4>Interconsultas</h4>
                 <table class="tabe table-striped">
                     <tr class="table info">
+                        <th>Nombre</th>
                         <th>Id</th>
                         <th>Interconsulta</th>
                         <th>Fecha de envio</th>
@@ -124,6 +125,7 @@
                     @for (int i = 0; i < Model.Interconsultas.Count; i++)
                     {
                         <tr>
+                            <td>@Html.DisplayText("DocIde")|@Html.DisplayText("NomApe")</td>
                             <td>@Html.EditorFor(m => Model.Interconsultas[i].IdInter, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
                             <td>@Html.EditorFor(m => Model.Interconsultas[i].Descri, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
                             <td>@Html.EditorFor(m => Model.Interconsultas[i].FecEnv, new { htmlAttributes = new { @class = "form-control" } })</td>
@@ -148,7 +150,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Back to List", "Index")*@
 </div>
 
 @section Scripts {

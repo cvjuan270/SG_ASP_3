@@ -1,4 +1,4 @@
-﻿@model SG_ASP_3.Models.Auditoria
+﻿@model SG_ASP_3.Models.AuditoriaViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -9,234 +9,165 @@
 <div>
     <h4>Auditoria</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Atenciones.Local0)
+    <dl class="row">
+
+
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.auditoria.IdAtenciones)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Atenciones.Local0)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.auditoria.IdAtenciones)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Medico.NomApe)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.auditoria.ExaCom)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Medico.NomApe)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.auditoria.ExaCom)
+            @Html.ListBoxFor(model => model.SelectExaMed, new MultiSelectList(Model.exaMedicos, "IdExMed", "Examen"), new { Id = "MultiselectExaMed", @class = "form-control", data_placeholder = "Examenes med..." })
+            @Html.DisplayFor(model => model.auditoria.ExaCom1)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ExaCom)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.auditoria.DatInc)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ExaCom)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.auditoria.DatInc)
+
+            @Html.DisplayFor(model => model.auditoria.DatInc1)
+
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ExaCom1)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.auditoria.AptErr)
+        </dt>
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.auditoria.AptErr)
+            @Html.DisplayFor(model => model.auditoria.AptErr1)
+        </dd>
+
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.auditoria.FaFiMe)
+
+        </dt>
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.auditoria.FaFiMe)
+            @Html.DisplayFor(model => model.auditoria.FaFiMe1)
+        </dd>
+
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.auditoria.FaFiPa)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ExaCom1)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.auditoria.FaFiPa)
+            @Html.DisplayFor(model => model.auditoria.FaFiPa1)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DatInc)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.auditoria.Restri)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DatInc)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.auditoria.Restri)
+            @Html.DisplayFor(model => model.auditoria.Restri1)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DatInc1)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.auditoria.Contro)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DatInc1)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.auditoria.Contro)
+            @Html.DisplayFor(model => model.auditoria.Contro1)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AptErr)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.auditoria.Diagno)
+        </dt>
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.auditoria.Diagno)
+            @Html.DisplayFor(model => model.auditoria.Diagno1)
+        </dd>
+
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.auditoria.ErrLle)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AptErr)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.auditoria.ErrLle)
+            @Html.DisplayFor(model => model.auditoria.ErrLle1)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AptErr1)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.auditoria.ObNoRe)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AptErr1)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.auditoria.ObNoRe)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FaFiMe)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.auditoria.EmSnOb)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FaFiMe)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.auditoria.EmSnOb)
+            @Html.DisplayFor(model => model.auditoria.EmSnOb1)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FaFiMe1)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.auditoria.OmiInt)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FaFiMe1)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.auditoria.OmiInt)
+            @Html.DisplayFor(model => model.auditoria.OmiInt1)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FaFiPa)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.auditoria.HorAud)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FaFiPa)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.auditoria.HorAud)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FaFiPa1)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.auditoria.FecAud)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FaFiPa1)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.auditoria.FecAud)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Restri)
+        <dt class="col-sm-3 text-right">
+            @Html.DisplayNameFor(model => model.auditoria.UserName)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Restri)
+        <dd class="col-sm-9 text-left">
+            @Html.DisplayFor(model => model.auditoria.UserName)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Restri1)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Restri1)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Contro)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Contro)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Contro1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Contro1)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Diagno)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Diagno)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Diagno1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Diagno1)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ErrLle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ErrLle)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ErrLle1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ErrLle1)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ObNoRe)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ObNoRe)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmSnOb)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmSnOb)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmSnOb1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmSnOb1)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HorAud)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HorAud)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FecAud)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FecAud)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OmiInt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OmiInt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OmiInt1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OmiInt1)
-        </dd>
 
     </dl>
 </div>
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.IdAudi }) |
-    @Html.ActionLink("Back to List", "Index")*@
+        @Html.ActionLink("Back to List", "Index")*@
 </p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function () {
+            $("#MultiselectExaMed").chosen();
+            $("#MultiselectExaMed").off();
+        });
+    </script>
+}

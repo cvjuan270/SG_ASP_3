@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SG_ASP_3.Models.PruebasCovid.AtenciCov>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DocIde.Descri)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoPrueba.Descri)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FecTomMue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HorTomMue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumDocIde)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomApe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdRes)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocIde.Descri)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoPrueba.Descri)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FecTomMue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HorTomMue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumDocIde)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomApe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdRes)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdAteCov }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdAteCov }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdAteCov })
+        </td>
+    </tr>
+}
+
+</table>

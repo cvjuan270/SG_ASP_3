@@ -18,6 +18,7 @@ namespace SG_ASP_3.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Admision
+        
         public ActionResult Create(int Id)
         {
             Atenciones atenciones = db.Atenciones.Find(Id);
@@ -50,7 +51,7 @@ namespace SG_ASP_3.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Enfermeria,Admin")]
+        [Authorize(Roles = "Admin,Admision")]
         public ActionResult Create(AdmisionViewModel viewModel)
         {
             if (ModelState.IsValid)
@@ -100,45 +101,6 @@ namespace SG_ASP_3.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Asistencia( string oEmpresa, DateTime? date) 
-        {
-           AdmisionViewModel viewModel = new AdmisionViewModel();
-
-            var listAte = db.Atenciones.Where(m => m.Empres.Contains("HUDBAY") ).ToList();
-            foreach (var item in listAte)
-            {
-                Atenciones atenciones = new Atenciones();
-                atenciones.IdAtenciones = item.IdAtenciones;
-                atenciones.Empres = item.Empres;
-                atenciones.DocIde = item.DocIde;
-                atenciones.NomApe = item.NomApe;
-                if (item.Admisions.Count!=0)
-                {
-                    Admision admision = new Admision();
-                    admision.HorIng = item.Admisions.First().HorIng;
-                    admision.HorReg = item.Hora;
-                    admision.HorSal = item.Admisions.First().HorSal;
-                    atenciones.Admisions.Add(admision);
-                }
-                else
-                {
-                    Admision admision = new Admision();
-                    admision.HorReg = item.Hora;
-                    atenciones.Admisions.Add(admision);
-                }
-
-                viewModel.Atenciones.Add(atenciones);
-            }
-
-            return View(viewModel);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Asistencia( AdmisionViewModel viewModel) 
-        {
-            return View();
-        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

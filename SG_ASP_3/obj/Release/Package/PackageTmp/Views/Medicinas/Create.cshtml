@@ -1,7 +1,7 @@
 ﻿@model SG_ASP_3.Models.MedicinaViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Crear";
 }
 
 @using (Html.BeginForm())
@@ -101,19 +101,20 @@
         </div>
     </div>
     <hr />
+
     <div class="form-group row">
 
         <label class="col-sm-2 col-form-label">Interconsulta</label>
         <div class="col-md-10">
             <div class="form-inline">
-                <input type="text" id="Descri" class="form-control" />
+                @Html.DropDownList("IdEspMed", null, htmlAttributes: new { @class = "form-control" })
                 <input type="button" value="Agregar" onclick="AgregaInterconsulta(); return false;" class="btn" />
             </div>
         </div>
 
     </div>
-    <div id="divInterconsultas" class="form-group row">
-        <table id="tableInterconsultas" class="table table-striped table-bordered">
+    <div id="divInterconsultas" class="form-group col-md-6 col-lg-4">
+        <table id="tableInterconsultas" class="table table-striped table-bordered table-primary">
             <thead>
                 <tr>
                     <th scope="col">Interconsultas</th>
@@ -129,14 +130,14 @@
 
     <div class="form-group row">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-primary" />
+            <input type="submit" value="Crear" class="btn btn-primary" />
         </div>
     </div>
 
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Back to List", "Index")*@
 </div>
 
 @section Scripts {
@@ -145,7 +146,7 @@
         var num = 0;
         function AgregaInterconsulta() {
             //captura datos
-            let IntCon = document.getElementById("Descri").value;
+            let IntCon = document.getElementById("IdEspMed").value;
 
             //agrega tabla
             let Tabla = document.getElementById("tableInterconsultas");
@@ -172,7 +173,7 @@
             divInterconsultas.appendChild(HiddenIndex);
             divInterconsultas.appendChild(HiddenInterconsulta);
 
-            document.getElementById("Descri").value = "";
+            document.getElementById("IdEspMed").value = "";
 
             num++;
         }

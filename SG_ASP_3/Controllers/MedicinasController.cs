@@ -15,14 +15,6 @@ namespace SG_ASP_3.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Medicina
-        public ActionResult Index()
-        {
-            var medicinas = db.Medicinas.Include(m => m.Atenciones).Include(m => m.Medico);
-            var ass = medicinas.ToList();
-            return View(medicinas.ToList());
-        }
-
         // GET: Medicina/Details/5
         public ActionResult Details(int? Id)
         {
@@ -35,10 +27,20 @@ namespace SG_ASP_3.Controllers
             {
                 return HttpNotFound();
             }
-            return View(atenciones.Medicina.First());
-        }
+            var mediviewModel = new MedicinaViewModel();
+            mediviewModel.oMedicina = atenciones.Medicina.First();
+            mediviewModel.oInterconsulta = atenciones.Interconsultas.ToList();
+
+            ViewBag.DocIde = atenciones.DocIde;
+            ViewBag.NomApe = atenciones.NomApe;
+            ViewBag.Empres = atenciones.Empres;
+
+
+            return View(mediviewModel);
+    }
 
         // GET: Medicina/Create
+        [Authorize(Roles = "Admin,Medicina")]
         public ActionResult Create(int Id)
         {
             MedicinaViewModel med = new MedicinaViewModel();
@@ -46,6 +48,7 @@ namespace SG_ASP_3.Controllers
             ViewBag.IdAtenciones = Id;
             ViewBag.IdApti = new SelectList(db.Aptituds, "IdApti", "Descri");
             ViewBag.IdMedico = new SelectList(db.Medicos, "IdMedico", "NomApe");
+            ViewBag.IdEspMed = new SelectList(db.EspecialidadMedicas, "Especialidad", "Especialidad");
 
             med.oMedicina.HorIng = TimeSpan.Parse(DateTime.Now.ToShortTimeString());
             med.oMedicina.HorSal = TimeSpan.Parse(DateTime.Now.ToShortTimeString());
@@ -60,6 +63,7 @@ namespace SG_ASP_3.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Medicina")]
         public ActionResult Create(MedicinaViewModel viewModel, int IdAtenciones, int IdMedico, int IdApti)
         {
             if (ModelState.IsValid)
@@ -68,7 +72,7 @@ namespace SG_ASP_3.Controllers
                 medicina.HorSal = TimeSpan.Parse(DateTime.Now.ToShortTimeString());
                 medicina.IdMedico = IdMedico;
                 medicina.IdApti = IdApti;
-
+                medicina.UserName = HttpContext.User.Identity.Name;
                 Atenciones atenciones = db.Atenciones.Find(IdAtenciones);
                 atenciones.Medicina.Add(medicina);
 
@@ -93,6 +97,7 @@ namespace SG_ASP_3.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin,Medicina")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -115,13 +120,14 @@ namespace SG_ASP_3.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Medicina")]
         public ActionResult Edit([Bind(Include = "IdMedicina,HorIng,HorSal,IdApti,FecApt,FecEnv,Coment,Observ,UserName,IdAtenciones,IdMedico")] Medicina medicina)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(medicina).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Atenciones");
             }
             ViewBag.IdAtenciones = new SelectList(db.Atenciones, "IdAtenciones", "Local0", medicina.IdAtenciones);
             ViewBag.IdMedico = new SelectList(db.Medicos, "IdMedico", "NomApe", medicina.IdMedico);
@@ -129,6 +135,7 @@ namespace SG_ASP_3.Controllers
         }
 
         // GET: Medicina/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -144,6 +151,7 @@ namespace SG_ASP_3.Controllers
         }
 
         // POST: Medicina/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

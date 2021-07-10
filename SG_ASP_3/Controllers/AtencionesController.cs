@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using IdentitySample.Models;
@@ -17,19 +18,16 @@ namespace SG_ASP_3.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        private DateTime oFecIni = DateTime.Now;
-        private DateTime oFecFin = DateTime.Now;
+        private DateTime oFecIni = DateTime.Now.Date;
+        private DateTime oFecFin = DateTime.Now.Date;
 
-        // GET: Atenciones
-        #region scaffolding
-        public ActionResult Index(DateTime? FecIni, DateTime? FecFin, string NomApe, string Dni, string Empres, string SubCon, string TipExa)
+        private async Task<IEnumerable<Atenciones>> _atenciones(DateTime? FecIni, DateTime? FecFin, string NomApe, string Dni, string Empres, string SubCon, string TipExa, bool? TodExa) 
         {
-            //var atenciones = db.Atenciones;
-            var atenciones = from cr in db.Atenciones select cr;
-
+            IQueryable<Atenciones> atenciones = db.Atenciones;
+            
             if (String.IsNullOrEmpty(FecIni.ToString()) && String.IsNullOrEmpty(FecFin.ToString()))
             {
-                atenciones = atenciones.Where(c => c.FecAte >= DateTime.Now && c.FecAte <= DateTime.Now);
+                atenciones = atenciones.Where(c => c.FecAte ==oFecIni);
             }
 
             if (!String.IsNullOrEmpty(FecIni.ToString()) && !String.IsNullOrEmpty(FecFin.ToString()))
@@ -54,49 +52,90 @@ namespace SG_ASP_3.Controllers
                 atenciones = atenciones.Where(c => c.TipExa.Contains(TipExa));
             }
 
-
             if (!string.IsNullOrEmpty(SubCon))
             {
                 atenciones = atenciones.Where(c => c.SubCon.Contains(SubCon));
             }
 
-            var listAleMed = (from ate in atenciones
-                                 join med in db.Medicinas on ate.IdAtenciones equals med.IdAtenciones 
-                                 where med.FecApt!=null
-                                 select new { IdAtenciones = ate.IdAtenciones,FecAte = ate.FecAte, FecApt = med.FecApt }).ToList();
-                                    
-            var listAleAud = (from ate in atenciones
-                              join aud in db.Auditorias on ate.IdAtenciones equals aud.IdAtenciones
-                              select new { ate.IdAtenciones, ate.FecAte, aud.FecAud }).ToList();
-            var ListAleEnf = (from ate in atenciones
-                              join inter in db.Interconsultas on ate.IdAtenciones equals inter.IdAtenciones
-                              where inter.FeCoPa!= null
-                              orderby inter.FeCoPa ascending
-                              select new {ate.IdAtenciones,ate.FecAte,inter.FeCoPa}).ToList();
-            
-            foreach (var item in listAleMed)
+            if (TodExa == false || TodExa == null)
+            {
+                atenciones = atenciones.Where(c => c.TipExa != "OTROS");
+            }
+
+
+            var LisMed = await(from at in atenciones
+                               join me in db.Medicinas on at.IdAtenciones equals me.IdAtenciones
+                               where me.FecApt != null
+                               select new { IdAtenciones = at.IdAtenciones, FecAte = at.FecAte, FecApt = me.FecApt }).ToListAsync();
+
+
+            var LisAud = await(from at in atenciones
+                               join au in db.Auditorias on at.IdAtenciones equals au.IdAtenciones
+                               select new { at.IdAtenciones, at.FecAte, au.FecAud }).ToListAsync();
+
+            var LisEnf = await(from at in atenciones
+                               join en in db.Interconsultas on at.IdAtenciones equals en.IdAtenciones
+                               where en.FeCoPa != null
+                               orderby en.FeCoPa ascending
+                               select new { at.IdAtenciones, at.FecAte, en.FeCoPa }).ToListAsync();
+
+            /*BUSCA ENVIO HC QUE SE LLENO DATOS*/
+            var lisEnHc = await(from at in atenciones
+                                join hc in db.EnvioHCs on at.IdAtenciones equals hc.IdAtenciones
+                                select new { at.IdAtenciones, at.FecAte, hc.FecEnv }).ToListAsync();
+
+            var _atenciones = await atenciones.ToListAsync();
+
+            foreach (var item in LisMed)
             {
                 TimeSpan ts = new TimeSpan();
                 ts = DateTime.Parse(item.FecApt.ToString()) - DateTime.Parse(item.FecAte.ToString());
-                atenciones.ToList().Find( m => m.IdAtenciones ==item.IdAtenciones).AleMed = ts.Days;
+                _atenciones.Find(c => c.IdAtenciones == item.IdAtenciones).AleMed = ts.Days;
             }
 
-            foreach (var item in listAleAud)
+            foreach (var item in LisAud)
             {
                 TimeSpan ts = new TimeSpan();
                 ts = DateTime.Parse(item.FecAud.ToString()) - DateTime.Parse(item.FecAte.ToString());
-                atenciones.ToList().Find(m => m.IdAtenciones == item.IdAtenciones).AleAud = ts.Days;
+                _atenciones.Find(c => c.IdAtenciones == item.IdAtenciones).AleAud = ts.Days;
             }
 
-            foreach (var item in ListAleEnf)
+            foreach (var item in LisEnf)
             {
                 TimeSpan ts = new TimeSpan();
                 ts = DateTime.Parse(item.FeCoPa.ToString()) - DateTime.Parse(item.FecAte.ToString());
-                atenciones.ToList().Find(m => m.IdAtenciones == item.IdAtenciones).AleEnf = ts.Days;
+                _atenciones.Find(c => c.IdAtenciones == item.IdAtenciones).AleEnf = ts.Days;
             }
 
-            
-            return View(atenciones);
+            /* LLENA EL CAMPO DE ATENCIONES.AlenHc  para la alerta de colortes de los botones*/
+            foreach (var item in lisEnHc)
+            {
+                TimeSpan ts = new TimeSpan();
+                ts = DateTime.Parse(item.FecEnv.ToString()) - DateTime.Parse(item.FecEnv.ToString());
+                _atenciones.Find(c => c.IdAtenciones == item.IdAtenciones).AlEnHC = ts.Days;
+            }
+
+            IEnumerable<Atenciones> ate = _atenciones;
+
+            return ate;
+        }
+
+        // GET: Atenciones
+        #region scaffolding
+        public async Task<ActionResult> Index() 
+        {
+            var ate = await _atenciones(null,null, null, null, null, null, null, null);
+
+            return View(ate);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Index(DateTime? FecIni, DateTime? FecFin, string NomApe, string Dni, string Empres, string SubCon, string TipExa, bool? TodExa)
+        {
+
+            var ate = await _atenciones(FecIni, FecFin, NomApe, Dni, Empres, SubCon, TipExa, TodExa);
+
+            return View(ate);
         }
 
         // GET: Atenciones/Details/5
@@ -115,6 +154,7 @@ namespace SG_ASP_3.Controllers
         }
 
         // GET: Atenciones/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             List<string> estado = new List<string>();
@@ -125,6 +165,7 @@ namespace SG_ASP_3.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(HttpPostedFileBase file)
         {
             if (file != null)
@@ -190,6 +231,7 @@ namespace SG_ASP_3.Controllers
         }
 
         // GET: Atenciones/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -217,6 +259,7 @@ namespace SG_ASP_3.Controllers
             return View(atenciones);
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -278,6 +321,11 @@ namespace SG_ASP_3.Controllers
         public ActionResult Admision (int Id)
         {
             return RedirectToAction("Create", "Admision", new { Id = Id });
+        }
+
+        public ActionResult EnvioHC(int Id)
+        {
+            return RedirectToAction("Create", "EnvioHCs", new { Id = Id });
         }
 
         protected override void Dispose(bool disposing)

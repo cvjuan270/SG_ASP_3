@@ -1,0 +1,98 @@
+﻿@model SG_ASP_3.Models.EnvioHCViewModel
+
+@{
+    ViewBag.Title = "Envio HC";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>EnvioHC</h4>
+    @Html.ActionLink("Reporte", "Index")
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div>
+        @Html.HiddenFor(m => m.EnvioHC.IdEnvioHC)
+        <dl class="row">
+            <dt class="col-sm-3 text-right">ID</dt>
+            <dd class="col-sm-9 text-left"> @Html.TextBoxFor(model => model.IdAtenciones, new { @readonly = "readonly", @With = "100", @class = "form-control" })
+
+            <dt class="col-sm-3 text-right">Documento de identidad</dt>
+            <dd class="col-sm-9 text-left">@Html.DisplayText("DocIde")</dd>
+
+            <dt class="col-sm-3 text-right">Nombre y apellido</dt>
+            <dd class="col-sm-9 text-left">@Html.DisplayText("NomApe")</dd>
+
+            <dt class="col-sm-3 text-right">Empresa</dt>
+            <dd class="col-sm-9 text-left">
+                <input id="Empresa" readonly="readonly" class="form-control" value="@Html.DisplayText("Empres")" />
+            </dd>
+        </dl>
+    </div>
+    <hr />
+
+    <div style="padding:5px 50px">
+        <div class="form-horizontal">
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Aptitud, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Aptitud, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-horizontal">
+            <div class="form-group row">
+                @Html.LabelFor(model => model.EnvioHC.FecEnv, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EnvioHC.FecEnv, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-horizontal">
+            <div class="form-group row">
+                @Html.LabelFor(model => model.EnvioHC.Observ, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.EnvioHC.Observ, new { @class = "form-control", @rows = "3" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-horizontal" id="Controles">
+            <div class="form-group row">
+                <label class="control-label col-md-2"> Controles( X YURA S.A.)</label>
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.EnvioHC.contro, new { @class = "form-control", @rows = "3" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</div>
+
+    }
+
+    <div>
+       
+    </div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            if ($("#Empresa").val() !="YURA S.A.") {
+                $("#Controles").hide();
+            }
+        })
+    </script>
+    
+    }

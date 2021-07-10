@@ -1,0 +1,14 @@
+C:\Users\JUAN\source\repos\SG_ASP_3\Reportes\bin\Debug\Reportes.dll.config
+C:\Users\JUAN\source\repos\SG_ASP_3\Reportes\bin\Debug\Reportes.dll
+C:\Users\JUAN\source\repos\SG_ASP_3\Reportes\bin\Debug\Reportes.pdb
+C:\Users\JUAN\source\repos\SG_ASP_3\Reportes\bin\Debug\Telerik.Reporting.dll
+C:\Users\JUAN\source\repos\SG_ASP_3\Reportes\bin\Debug\Telerik.Reporting.pdb
+C:\Users\JUAN\source\repos\SG_ASP_3\Reportes\bin\Debug\Telerik.Reporting.xml
+C:\Users\JUAN\source\repos\SG_ASP_3\Reportes\obj\Debug\Reportes.Report1.resources
+C:\Users\JUAN\source\repos\SG_ASP_3\Reportes\obj\Debug\Reportes.csproj.GenerateResource.cache
+C:\Users\JUAN\source\repos\SG_ASP_3\Reportes\obj\Debug\Reportes.dll.licenses
+C:\Users\JUAN\source\repos\SG_ASP_3\Reportes\obj\Debug\Reportes.csproj.CoreCompileInputs.cache
+C:\Users\JUAN\source\repos\SG_ASP_3\Reportes\obj\Debug\Reportes.csproj.CopyComplete
+C:\Users\JUAN\source\repos\SG_ASP_3\Reportes\obj\Debug\Reportes.dll
+C:\Users\JUAN\source\repos\SG_ASP_3\Reportes\obj\Debug\Reportes.pdb
+C:\Users\JUAN\source\repos\SG_ASP_3\Reportes\obj\Debug\Reportes.csproj.AssemblyReference.cache
