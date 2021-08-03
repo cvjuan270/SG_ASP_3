@@ -1,0 +1,39 @@
+﻿@using (Html.BeginForm())
+{
+    <div class="form-row" style="background-color:azure;padding:5px;font-size:10px">
+        <div class="form-group col-md-6 col-lg-2">
+            @Html.TextBox("FecIni", @DateTime.Now.ToString("yyyy-MM-dd"), htmlAttributes: new { @class = "form-control datepicker", @Type = "date" })
+        </div>
+        <div class="form-group col-md-6 col-lg-2">
+            @Html.TextBox("FecFin", @DateTime.Now.ToString("yyyy-MM-dd"), htmlAttributes: new { @class = "form-control datepicker", @Type = "date" })
+        </div>
+        <div class="form-group col-md-6 col-lg-1">
+            @Html.TextBox("Dni", "", new { placeholder = "DNI", @class = "form-control text-box" })
+        </div>
+        <div class="form-group col-md-6 col-lg-2">
+            @Html.TextBox("NomApe", "", new { placeholder = "Nombre y/ó apellido", @class = "form-control text-box" })
+        </div>
+        <div class="form-group col-md-6 col-lg-1">
+            @Html.TextBox("TipExa", "", new { placeholder = "Tipo de examen", @class = "form-control text-box" })
+        </div>
+        <div class="form-group col-md-6 col-lg-1">
+            @Html.TextBox("Empres", "", new { placeholder = "Empresa", @class = "form-control text-box" })
+        </div>
+        <div class="form-group col-md-6 col-lg-1">
+            @Html.TextBox("SubCon", "", new { placeholder = "Sub Contrata", @class = "form-control text-box" })
+        </div>
+        <div class="form-group col-md-6 col-lg-1">
+            <div class="custom-control custom-checkbox">
+                @Html.CheckBox("TodExa", false, new { @class = "custom-control-input" })
+                <label class="custom-control-label" for="TodExa">todos los examenes medicos</label>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6 col-lg-2">
+            <button type="submit" class=" btn btn-primary">
+                <i class="fa fa-search text-white"></i> Buscar
+            </button>
+        </div>
+    </div>
+
+}

@@ -1,0 +1,192 @@
+﻿@model IEnumerable<SG_ASP_3.Models.Atenciones>
+
+@{
+    ViewBag.Title = "ReportMedicina";
+}
+
+@Html.Partial("_Buscar")
+
+<table id="table_id" class="display compact table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th></th>
+            <th>
+                Id
+            </th>
+            <th>
+                Tip. Exa
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FecAte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomApe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocIde)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubCon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proyec)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Perfil)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Area)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PueTra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PeReAd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hora)
+            </th>
+            <th>Aptitud</th>
+            <th>Interconsultas</th>
+            <th>Envio de resultados a Empresa</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdAtenciones)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipExa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FecAte)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomApe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocIde)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubCon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Proyec)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Perfil)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Area)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PueTra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PeReAd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hora)
+                </td>
+                <td>
+                    @if (item.Medicina.Count >= 1)
+                    {
+                        @Html.DisplayFor(modelItem => item.Medicina.First().Aptitud.Descri)
+                    }
+                </td>
+                <td>
+                    @if (item.Interconsultas.Count >= 1)
+                    {
+                        <ul>
+                            @foreach (var inter in item.Interconsultas)
+                            {
+                                <li>@inter.Descri</li>
+                            }
+                        </ul>
+                    }
+                </td>
+                <!--Envio de resultados a empresa-->
+                <td>
+                    <ul class="list-group primary-color">
+                        @if (item.Medicina.Count >= 1)
+                        {
+                            <li class="list-group-item-primary">Medicina</li>
+                            <li class="list-group-item">
+                                <span class="badge badge-primary badge-pill">@Html.DisplayFor(modelItem => item.Medicina.First().FecEnv)</span>
+                            </li>
+                        }
+                        @if (item.Interconsultas.Count >= 1)
+                        {
+                            <li class="list-group-item-warning">Enfermería/Interconsultas</li>
+
+                            <li class="list-group-item">
+                                @foreach (var ic in item.Interconsultas)
+                                {
+                                    <span class="badge badge-primary badge-pill">@Html.DisplayFor(c => ic.PeCoPa): @Html.DisplayFor(c => ic.FeCoPa)</span>
+                                }
+                            </li>
+
+                        }
+                        @if (item.Admisions.Count >= 1)
+                        {
+                            <li class="list-group-item-success">Admision</li>
+                            <li class=" list-group-item">
+                                Env. Asistencia
+                                <span class="badge badge-light ">@Html.DisplayFor(modelItem => item.Admisions.First().EnvAsi)</span>
+                            </li>
+                            <li class=" list-group-item">
+                                Env. Aptirud
+                                <span class="badge badge-light badge-pill">@Html.DisplayFor(modelItem => item.Admisions.First().EnvApt)</span>
+                            </li>
+                            <li class=" list-group-item">
+                                <span class="badge badge-primary badge-pill">A Medicina:  @Html.DisplayFor(modelItem => item.Admisions.First().FecEnvResMed)</span>
+                                <span class="badge badge-primary badge-pill">A empresa:  @Html.DisplayFor(modelItem => item.Admisions.First().FecEnvResEmp)</span>
+                            </li>
+
+                            if (item.Interconsultas.Count >= 1)
+                            {
+                                <li class="list-group-item-success">Admision/Interconsultas</li>
+                                <li class="list-group-item">
+                                    @foreach (var ic in item.Interconsultas)
+                                    {
+                                        <span class="badge badge-primary badge-pill">@Html.DisplayFor(c => ic.PeEnCo): @Html.DisplayFor(c => ic.FecEnv)</span>
+                                    }
+                                </li>
+                            }
+
+                        }
+                    </ul>
+
+                </td>
+                <!--Envio de resultados a empresa-->
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#table_id").DataTable({
+                scrollY: 600,
+                "order": [1, "asc"],
+                "Show": "Vista"
+            });
+        });
+    </script>
+
+} 

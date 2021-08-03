@@ -1,0 +1,144 @@
+﻿@model IEnumerable<SG_ASP_3.Models.Atenciones>
+
+@{
+    ViewBag.Title = "ReportMedicina";
+}
+
+@Html.Partial("_Buscar")
+
+<table id="table_id" class="display compact table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th></th>
+            <th>
+                Id
+            </th>
+            <th>
+                Tip. Exa
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FecAte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomApe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocIde)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubCon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proyec)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Perfil)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Area)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PueTra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PeReAd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hora)
+            </th>
+            <th>Aptitud</th>
+            <th>Interconsultas</th>
+            <th>Envio de resultados a Empresa</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdAtenciones)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipExa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FecAte)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomApe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocIde)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubCon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Proyec)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Perfil)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Area)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PueTra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PeReAd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hora)
+                </td>
+                <td>
+                    @if (item.Medicina.Count >= 1)
+                    {
+                        @Html.DisplayFor(modelItem => item.Medicina.First().Aptitud.Descri)
+                    }
+                </td>
+                <td>
+                    @if (item.Interconsultas.Count >= 1)
+                    {
+                    <ul>
+                        @foreach (var inter in item.Interconsultas)
+                        {
+                            <li>@inter.Descri</li>
+                        }
+                    </ul>
+                    }
+                </td>
+                <td>
+                    @if (item.Admisions.Count >= 1)
+                    {
+                        @Html.DisplayFor(modelItem => item.Admisions.First().FecEnvResEmp)
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#table_id").DataTable({
+                scrollY: 600,
+                "order": [1, "asc"],
+                "Show": "Vista"
+            });
+        });
+    </script>
+
+} 

@@ -13,6 +13,8 @@ namespace SG_ASP_3.Models
         public int ProAud { get; set; }
         public int ProEnf { get; set; }
         public int proAdm { get; set; }
+        public int ProAdmInt { get; set; }
+        public int ProHiCl { get; set; }
         /*interconsultas*/
         public int NumInt { get; set; }
         /*medicona*/

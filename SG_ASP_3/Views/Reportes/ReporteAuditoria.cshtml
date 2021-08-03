@@ -1,0 +1,161 @@
+﻿@model ICollection<SG_ASP_3.Models.Atenciones>
+@{
+    ViewBag.Title = "ReporteAuditoria";
+}
+
+<h2>Reporte Auditoria</h2>
+
+@Html.Partial("_Buscar")
+
+
+<table id="table_id" class="table table-bordered display compact">
+    <thead class="thead-dark">
+        <tr>
+            <th>Fecha de atencion</th>
+            <th>Fecha audiotoria</th>
+            <th>Empresa</th>
+            <th>Sub contrata</th>
+            <th>Tipo de examen</th>
+            <th>DNI</th>
+            <th>Paciente</th>
+            <th>Medico evaluador</th>
+            <th>
+                APTITUD ERRADA
+            </th>
+            <th>
+                FALTA DE RESTRICCION
+            </th>
+            <th>
+                EXAMENES INCOMPLETOS
+            </th>
+            <th>
+                CONTROL INCORRECTO
+            </th>
+            <th>
+                ERROR DE DIAGNOSTICO
+            </th>
+            <th>
+                DATOS INCOMPLETOS
+            </th>
+            <th>
+                FALTA FIRMA/SELLO DE ESPEALIDAD
+            </th>
+            <th>
+                FALTA FIRMA Y HUELLA DEL PACIENTE
+            </th>
+            <th>
+                ERROR DE LLENADO
+            </th>
+            <th>
+                EXP. SIN OBSERVACIONES.
+                CONFORME"
+            </th>
+            <th>
+                PUNTAJE
+            </th>
+            <th>
+                ESCALA VALORATIVA
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(c => item.FecAte)
+                </td>
+                <td>
+
+                    @Html.DisplayFor(c => item.Auditorias.First().FecAud)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(c => item.Empres)
+                </td>
+                <td>
+                    @Html.DisplayFor(c => item.SubCon)
+                </td>
+                <td>
+                    @Html.DisplayFor(c => item.TipExa)
+                </td>
+                <td>
+                    @Html.DisplayFor(c => item.DocIde)
+                </td>
+                <td>
+                    @Html.DisplayFor(c => item.NomApe)
+                </td>
+                <td>
+                    @if (item.Medicina.Count >= 1)
+                    {
+                        @Html.DisplayFor(c => item.Medicina.First().Medico.NomApe)
+                    }
+                </td>
+                @if (item.Auditorias.Count >= 1)
+                {
+                    <td>
+                        @item.Auditorias.First().AptErr1
+                    </td>
+                    <td>
+                        @item.Auditorias.First().Restri1
+                    </td>
+                    <td>
+                        @if (item.Auditorias.First().ExaMedicos.Count >= 1)
+                        {
+                            
+                                foreach (var ExaMed in item.Auditorias.First().ExaMedicos)
+                                {
+                                    @ExaMed.Examen <br />
+                                }
+                            
+                        }
+                    </td>
+                    <td>
+                        @item.Auditorias.First().Contro1
+                    </td>
+                    <td>
+                        @item.Auditorias.First().Diagno1
+                    </td>
+                    <td>
+                        @item.Auditorias.First().DatInc1
+                    </td>
+                    <td>
+                        @item.Auditorias.First().FaFiMe1
+                    </td>
+                    <td>
+                        @item.Auditorias.First().FaFiMe1
+                    </td>
+                    <td>
+                        @item.Auditorias.First().ErrLle1
+                    </td>
+                    <td>
+                        @item.Auditorias.First().EmSnOb1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+                responsive: "true",
+                dom: 'Bfrtip',
+                buttons: [{
+                    extend:"excelHtml5"
+                }]
+
+            });
+        });
+    </script>
+
+} 

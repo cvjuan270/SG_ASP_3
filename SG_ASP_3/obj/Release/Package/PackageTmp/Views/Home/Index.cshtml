@@ -1,83 +1,433 @@
 ﻿@model SG_ASP_3.Models.DashBoardViewModel
-@{
-    ViewBag.Title = "Home Page";
-}
+@{ ViewBag.Title = "Home Page"; }
 
-
-@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+@if (!Request.IsAuthenticated && !User.IsInRole("Admin"))
 {
-    <div style="padding:50px">
+<div class="embed-responsive embed-responsive-16by9">
 
-
-        <div class=" container">
-            <h4>PROCESADOS [EMOS]</h4>
-            <div class=" card-deck mb-3 text-center">
-                <div class="card mb-4 box-shadow">
-                    <div class=" card-header">
-                        <h4>MEDICINA</h4>
-                    </div>
-                    <h1 class="card-title pricing-card-title">
-                        @Model.ProMed/
-                        <small class="text-muted">@Model.NumAte</small>
-                    </h1>
-                    @Html.ActionLink("Reporte", "MediRepo", null, new { @class = "btn btn-lg btn-block btn-outline-primary" })
-                </div>
-
-                <div class="card mb-4 box-shadow">
-                    <div class=" card-header">
-                        <h4>AUDITORIA</h4>
-                    </div>
-                    <h1 class="card-title pricing-card-title">
-                        @Model.ProAud/
-                        <small class="text-muted">@Model.NumAte</small>
-                    </h1>
-                </div>
-
-                <div class="card mb-4 box-shadow">
-                    <div class=" card-header">
-                        <h4>ENFERMERIA (interconsultas)</h4>
-                    </div>
-                    <h1 class="card-title pricing-card-title">
-                        @Model.ProEnf/
-                        <small class="text-muted">@Model.NumInt</small>
-                    </h1>
-                </div>
-
-                <div class="card mb-4 box-shadow">
-                    <div class=" card-header">
-                        <h4>ADMISION</h4>
-                    </div>
-                    <h1 class="card-title pricing-card-title">
-                        @Model.ProMed/
-                        <small class="text-muted">@Model.NumAte</small>
-                    </h1>
-                </div>
-            </div>
-
-            <div class=" card-deck mb-3 text-center">
-                <div class="card mb-4 box-shadow">
-                    <div class=" card-header">
-                        <h4>APTITUDES</h4>
-                    </div>
-                    <h1 class="card-title pricing-card-title">
-                        @Model.ProMed/
-                        <small class="text-muted">@Model.NumAte</small>
-                    </h1>
-                    <ul class=" list-unstyled mt-3 mb-4">
-                        @foreach (var item in Model.Aptitudes)
-                        {
-                            <li>@item.Descri|@item.IdApti</li>
-                        }
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    <iframe class="embed-responsive-item" src="https://policlinicosangabriel.com/" allowfullscreen></iframe>
+</div> 
 }
 else
-{
-    <div class="embed-responsive embed-responsive-16by9">
+ {
+    <!--dATOS DEL MODELO-->
+    @Html.HiddenFor(c => c.NumAte)
+    @Html.HiddenFor(C => C.ProMed)
+    @Html.HiddenFor(C => C.ProAud)
+    @Html.HiddenFor(C => C.ProEnf)
+    @Html.HiddenFor(C => C.proAdm) <!--dATOS DEL MODELO--> <!-- Heading -->
+    <div class="card mb-4 wow fadeIn">
+    <div class="card-body">
 
-            <iframe class="embed-responsive-item" src="https://policlinicosangabriel.com/" allowfullscreen></iframe>
+    <div class="form-group row">
+    @Html.TextBox("FecIni", @DateTime.Now.ToString("yyyy-MM-dd"), htmlAttributes: new { @class = "form-control datepicker ", @Type = "date" })
+    @Html.TextBox("FecFin", @DateTime.Now.ToString("yyyy-MM-dd"), htmlAttributes: new { @class = "form-control datepicker ml-4", @Type = "date" })
+    <button class="btn btn-outline-primary waves-effect mt-0" id="btntest" value="test">Filtrar</button>
+    </div>
+
+    </div>
+    </div> <!-- Heading --> <!--Grid row PROCESADOS--> <!--PROCESADOS-->
+    <h2>Procesados[EMO'S']</h2>
+    <div class="row wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+    <div class="col-lg-9 mb-4">
+    <div>
+    <div class=" card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+            <div class=" card-header">
+                <h4>MEDICINA</h4>
+            </div>
+            <h1 id="oProMed" class="card-title pricing-card-title">
+                @Model.ProMed/
+                <small id="oNumAte" class="text-muted">@Model.NumAte</small>
+            </h1>
+            @Html.ActionLink("Reportes", "ReportMedicina","Reportes", null, new { @class = "btn btn-outline-light-blue" })
         </div>
+
+        <div class="card mb-4 box-shadow">
+            <div class=" card-header">
+                <h4>AUDITORIA</h4>
+            </div>
+            <h1 id="oProAud" class="card-title pricing-card-title">
+                @Model.ProAud/
+                <small class="text-muted">@Model.NumAte</small>
+            </h1>
+            @Html.ActionLink("Reportes", "ReporteAuditoria", "Reportes", null, new { @class = "btn btn-outline-light-blue" })
+        </div>
+
+    <div class="card mb-4 box-shadow">
+        <div class=" card-header">
+            <h4>ENFERMERIA</h4>
+        </div>
+        Interconsultas
+        <h1 id="oProEnf" class="card-title pricing-card-title">
+            @Model.ProEnf/
+            <small class="text-muted">@Model.NumInt</small>
+        </h1>
+        Envio H.C.
+        <h1 id="oProEnHc" class="card-title pricing-card-title">
+            @Model.ProEnf/
+            <small class="text-muted">@Model.NumAte</small>
+        </h1>
+
+    </div>
+
+    <div class="card mb-4 box-shadow">
+        <div class=" card-header">
+            <h4>ADMISION</h4>
+        </div>
+        Atenciones
+        <h1 id="oProAdm" class="card-title pricing-card-title">
+            @Model.proAdm/
+            <small class="text-muted">@Model.NumAte</small>
+        </h1>
+        Interconsultas
+        <h1 id="oProAdmInt" class="card-title pricing-card-title">
+            @Model.ProAdmInt/
+            <small class="text-muted">@Model.NumInt</small>
+        </h1>
+    </div>
+    </div>
+    </div>
+    <!--PROCESADOS-->
+    </div>
+    </div> <!--PROCESADOS--> <!--AUDITORIAS-->
+    <div class=" row wow fadeIn">
+        <!--INCIDENCIAS-->
+        <div class=" col-lg-9 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <canvas id="ChaAud"></canvas>
+                </div>
+            </div>
+        </div>
+        <!--INCIDENCIAS-->
+
+        <div class=" col-lg-3 mb-4">
+            <!--EMO CON I SIN OBSERVACIONES-->
+            <div class="card mb-4">
+                <div class=" card-header text-center">
+                    EMO'S CON Y SIN OBSERV.
+                </div>
+                <div class="card-body">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+            <!--EMO CON I SIN OBSERVACIONES-->
+            <!--ESCALA VALORATIVA-->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <canvas id="ChartEscVal"></canvas>
+                    @*<table class=" table table-bordered table-sm">
+                            <tr>
+                                <td>Muy grave</td>
+                                <td>
+                                    <ul>
+                                        <li>Aptitud Errada</li>
+                                        <li>Falta Restricció</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Grave</td>
+                                <td>
+                                    <ul>
+                                        <li>Examenes incompletos</li>
+                                        <li>Control incorrecto</li>
+                                        <li>Error de diagnostico</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Moderado</td>
+                                <td>
+                                    <ul>
+                                        <li>Datos incompletos</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Leve</td>
+                                <td>
+                                    <ul>
+                                        <li>Error de llenado</li>
+                                        <li>Falta firma y sello de Medico</li>
+                                        <li>Falta firma de paciente</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>*@
+                </div>
+            </div>
+            <!--ESCALA VALORATIVA-->
+
+
+        </div>
+
+    </div>
+                                                                                                                                                                
+}
+
+<!--AUDITORIAS-->
+
+
+
+@section scripts {
+    <!-- SCRIPTS -->
+    <!-- Initializations -->
+    <script type="text/javascript" src="~/Scripts/modules/wow.js"></script>
+    <script type="text/javascript">
+        // Animations initialization
+        new WOW().init();</script>
+
+    <!-- Charts -->
+    <script type="text/javascript" src="~/Scripts/modules/chart.js"></script>
+
+    <!--GetEmos-->
+    <script>
+
+    </script>
+    <!--GetEmos-->
+    <!--GetIncidencias AUDIOTORIAS-->
+    <script>
+
+        /*Variables*/
+        var GetRango = function () {
+            var FecIni = $("#FecIni").val();
+            var FecFin = $("#FecFin").val();
+            var rango = new FormData();
+
+            rango.append('FecIni', FecIni);
+            rango.append('FecFin', FecFin);
+            return rango;
+        }
+
+        $(document).ready(function () {
+            GetEmosProcesados();
+            GenChart();
+            GenPieEmos();
+            GetEscVal();
+        });
+
+        $("#btntest").click(function () {
+            GetEmosProcesados();
+            GenChart();
+            GenPieEmos();
+            GetEscVal();
+
+        });
+
+        /*INCIDENCIAS*/
+        let myChart;
+        function GenChart () {
+            fetch("@Url.Action("GetAuditorias")", {
+                method: "POST",
+                body: GetRango()
+            })
+                .then(function (res) {
+                    return res.json();
+                })
+                .then(function (miJson) {
+
+                    var AptErr = miJson.AptErr;
+                    var FalRes = miJson.FalRes;
+                    var ExaInc = miJson.ExaInc;
+                    var ConInc = miJson.ConInc;
+                    var ErrDia = miJson.ErrDia;
+                    var DatInc = miJson.DatInc;
+                    var ErrLle = miJson.ErrLle;
+                    var FaFiMe = miJson.FaFiMe;
+                    var FaFiPa = miJson.FaFiPa;
+                    var suntot = AptErr +FalRes + ExaInc + ConInc + ErrDia + DatInc +ErrLle +FaFiMe +FaFiPa;
+
+                    console.log(miJson.AptErr+"|"+suntot);
+
+                    /*CHARDT*/
+
+                    var ctx = document.getElementById('ChaAud').getContext('2d');
+                    if (myChart) {
+                        myChart.destroy();
+                    }
+                    myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Aptitud Errada', 'Falta restricción', 'Examenes incompletos', 'Control incorrecto', 'Error de diagnostico',
+                                'Datos incompletos','Error de llenado','Falta firma y sello del Medico','Falta firma del paciente'],
+                            datasets: [{
+                                label: "% DE INCIDENCIAS ",
+                                data: [(AptErr / suntot) * 100, (FalRes / suntot) * 100, (ExaInc / suntot) * 100,
+                                    (ConInc / suntot) * 100, (ErrDia / suntot) * 100, (DatInc / suntot) * 100, (ErrLle / suntot) * 100,
+                                    (FaFiMe / suntot) * 100, (FaFiPa / suntot) * 100],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)',
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',]
+                                ,
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            //scales: {
+                            //    y: {
+                            //        beginAtZero: true
+
+                            //    }
+                            //}
+                        }
+
+                    });
+                })
+        };
+        /*INCIDENCIAS*/
+
+        /*EMOS*/
+        let myChart1;
+        function GenPieEmos() {
+            fetch("@Url.Action("GetEmos")", {
+                method: "POST",
+                body: GetRango()
+            }).then(function (res) {
+                return res.json();
+            }).then(function (MyJson) {
+
+                /*Dibuja Pie Emos*/
+                var ctxP = document.getElementById("pieChart").getContext('2d');
+                var myPieChart = new Chart(ctxP, {
+                    type: 'pie',
+                    data: {
+                        labels: ["Observados", "sin Observaciones"],
+                        datasets: [{
+                            data: [MyJson.EmoCO,MyJson.EmoSO],
+                            backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+                            borderColor: ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)'],
+                            hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        legend: false
+                    }
+                });
+
+                /*Dibuja Pie Emos*/
+            })
+        };
+        /*EMOS*/
+
+        /*ESCALA VALUrlRATIVA*/
+        let MyChart2;
+        function GetEscVal() {
+            fetch("@Url.Action("GetEscVal")", {
+                method: "POST",
+                body:GetRango()
+            }).then(function (res) {
+                return res.json();
+            }).then(function (myJson) {
+                /*Dibuja Chart Escala valorativa*/
+                var sumtot = myJson.MGr + myJson.Gra + myJson.Mod + myJson.Lev
+                var ctx = document.getElementById("ChartEscVal").getContext('2d');
+                if (MyChart2) {
+                    MyChart2.destroy();
+                }
+                MyChart2 = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["Muy Grave", "Grave", "Moderado", "Leve"],
+                        datasets: [{
+                            label: '% Escala de valorización de incidencias',
+                            data: [(myJson.MGr / sumtot) * 100, (myJson.Gra / sumtot) * 100, (myJson.Mod / sumtot) * 100, (myJson.Lev / sumtot)*100],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(54, 162, 235, 0.2)'
+
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(54, 162, 235, 1)'
+
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+                /*Dibuja Chart Escala valorativa*/
+            })
+
+        };
+        /*ESCALA VALORATIVA*/
+
+        /*EMOS PROCESADOS*/
+        function GetEmosProcesados() {
+
+            fetch("@Url.Action("GetEmosPro")", {
+                method: "POST",
+                body:GetRango()
+            }).then(function (res) {
+                return res.json();
+            }).then(function (myJson) {
+                var CardMedicina = $("#oProMed");
+                var CardAuditoria = $("#oProAud");
+                var CardEnfemeria = $("#oProEnf");
+                var CardEnviHC = $("#oProEnHc");
+                var CardProAdm = $("#oProAdm");
+                var CardProAdmInt = $("#oProAdmInt");
+
+                CardMedicina.text(myJson.ProMed + "/");
+                CardMedicina.append("<small class='text-muted'>"+myJson.NumAte+"</small>");
+
+                CardAuditoria.text(myJson.ProAud+"/");
+                CardAuditoria.append("<small class='text-muted'>" + myJson.NumAte + "</small>");
+
+                CardEnfemeria.text(myJson.ProEnf + "/");
+                CardEnfemeria.append("<small class='text-muted'>" + myJson.NumInt + "</small>")
+
+                CardEnviHC.text(myJson.ProHiCl + "/");
+                CardEnviHC.append("<small class='text-muted'>" + myJson.NumAte + "</small>")
+
+                CardProAdm.text(myJson.proAdm+"/");
+                CardProAdm.append("<small class='text-muted'>" + myJson.NumAte + "</small>")
+
+                CardProAdmInt.text(myJson.ProAdmInt+"/");
+                CardProAdmInt.append("<small class='text-muted'>" + myJson.NumInt + "</small>")
+
+            })
+        };
+        /*EMOS PROCESADOS*/
+
+        /*hello*/
+        function hello() {
+            alert("Hola mundo");
+        }
+
+    </script>
+    <!--GetIncidencias AUDOTORIAS-->
 }
